@@ -1,0 +1,66 @@
+@import url("./styles.css");
+
+.game_form {
+    width: fit-content;
+    max-width: 700px;
+    margin: auto;
+}
+
+input[type=text],
+input[type=password],
+input[type=date],
+input[type=time],
+input[type=number] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.game_submit {
+    background-color: #F65252;
+    color: white;
+    border: none;
+    padding: 14px 20px;
+    cursor: pointer;
+    width: 40%;
+    white-space: nowrap;
+}
+
+a {
+	text-decoration: none;
+}
+
+.outline {
+    background-color: white;
+    color: #F65252;
+    border: 1px solid #F65252;
+    padding: 14px 20px;
+    cursor: pointer;
+    width: 40%;
+    white-space: nowrap;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+.button_form {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.container {
+    padding: 16px;
+}

@@ -1,0 +1,87 @@
+@import url("./styles.css");
+
+.sports_table {
+    overflow: auto;
+    width: 70%;
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+
+.sports_table h2 {
+    color: #F65252;
+    margin-bottom: 20px;
+}
+
+.sports_table p {
+    color: #F65252;
+    font-weight: bold;
+}
+
+.invis_button {
+    visibility: hidden;
+    border: none;
+    cursor: pointer;
+}
+
+.sports_table_td_container:hover button {
+    visibility: visible;
+    color: #F65252;
+    border: none;
+    background-color: #F7E8EA;
+}
+
+.sports_table_td_container:hover {
+    background-color: #F7E8EA;
+}
+
+.sports_table table {
+    height: 100%;
+    width: 100%;
+    table-layout: auto;
+    border-collapse: collapse;
+    border-spacing: 1px;
+    text-align: left;
+}
+
+.sports_table th .sports_table td {
+    border: 2px solid #F65252;
+    background-color: #eceff1;
+    padding: 8px;
+}
+
+.sports_table tr {
+    border-bottom: 2px solid #F65252;
+    border-top: 2px solid #F65252;
+    font-size: small;
+}
+
+.sports_table .sports_table-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.sports_table_td_container {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    font-size: medium;
+}
+
+.sports_table_td_container p {
+    margin-right: auto;
+    min-width: 40%;
+}
+
+.sports_table_bottom button {
+    color: #F65252;
+    border: none;
+    background-color: #F7E8EA;
+    padding: 1%;
+    border-radius: 0 10px 10px;
+    margin-top: 3%;
+    font-size: small;
+    cursor: pointer;
+}

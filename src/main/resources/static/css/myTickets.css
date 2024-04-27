@@ -1,0 +1,132 @@
+@import url("./styles.css");
+
+.tickets_table {
+    overflow: auto;
+    width: 80%;
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+
+.tickets_table th {
+    color: #F65252;
+    font-size: medium;
+    padding: 10px 5px;
+    white-space: nowrap;
+}
+
+.tickets_table td {
+    font-size: small;
+    font-weight: bold;
+    padding: 10px 5px;
+}
+
+.invis_button {
+    visibility: hidden;
+}
+
+.tickets_table_td_container:hover button {
+    visibility: visible;
+    color: #F65252;
+    border: none;
+    background-color: #F7E8EA;
+}
+
+.tickets_table_td_container:hover {
+    background-color: #F7E8EA;
+}
+
+.tickets_table table {
+    height: 100%;
+    width: 100%;
+    table-layout: auto;
+    border-collapse: collapse;
+    border-spacing: 1px;
+    text-align: left;
+}
+
+.tickets_table tr {
+    border-bottom: 2px solid #F65252;
+    border-top: 2px solid #F65252;
+    font-size: small;
+
+}
+
+.tickets_table .tickets_table-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.tickets_table_td_container {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.tickets_table_td_container p {
+    margin-right: auto;
+    min-width: 40%;
+}
+
+.tickets_table_bottom button {
+    color: #F65252;
+    border: none;
+    background-color: #F7E8EA;
+    padding: 1%;
+    border-radius: 0 10px 10px;
+    margin-top: 3%;
+    font-size: small;
+}
+
+.right_td {
+    text-align: right;
+}
+
+.tickets_table tbody tr td button {
+    color: black;
+    border: none;
+    background-color: inherit;
+    padding: 0;
+    font-weight: bold;
+    font-size: small;
+}
+
+.tickets_table tbody tr td button:hover {
+    text-decoration: underline;
+}
+
+.add_game_btn {
+    display: flex;
+    justify-content: space-between;
+    font-size: medium;
+    margin: 20px 0;
+}
+
+.add_game_btn h2 {
+    color: #F65252;
+}
+
+.tickets_table button {
+    color: #F65252;
+    border: none;
+    padding: 1%;
+    font-size: medium;
+    background-color: inherit;
+}
+
+.add_game_btn button:hover {
+    text-decoration: underline;
+}
+
+.sports_table_bottom button {
+    color: #F65252;
+    border: none;
+    background-color: #F7E8EA;
+    padding: 1%;
+    border-radius: 0 10px 10px;
+    margin-top: 3%;
+    font-size: small;
+    cursor: pointer;
+}

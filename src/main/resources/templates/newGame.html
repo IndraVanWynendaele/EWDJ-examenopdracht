@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Login</title>
+	<link rel="stylesheet" th:href="@{/css/newGame.css}">
+</head>
+<body>
+	<header>
+        <img src="/images/flame.png" alt="logo">
+        <p>Admin</p>
+        <p>email.email@gmail.com</p>
+        <form th:action="@{/logout}" method="post">
+        	<button type="submit" value="Logout">Logout</button>
+        </form>
+    </header>
+    <form th:action="@{/games/add}" method="post" class="game_form">
+        <div class="container">
+        	<h2>NEW GAME FOR ATHLETICS</h2>
+            <label for="date"><b>DATE</b></label>
+            <input type="date">
+
+            <label for="psw"><b>TIME</b></label>
+            <input type="time" placeholder="Enter Password" name="psw">
+
+            <label for="location"><b>LOCATION</b></label>
+            <select name="disciplines" id="disciplines">
+                <option value="none" selected disabled hidden=true>Select a location</option>
+                <option value="100m">JB Stadium</option>
+                <option value="200m">Stade de Paris</option>
+                <option value="400m">KLP Stadium</option>
+            </select>
+
+            <label for="disciplines"><b>DISCIPLINE</b></label>
+            <caption>ctrl + click to select multiple options</caption>
+            <select name="disciplines" id="disciplines" multiple>
+                <option value="100m">100m</option>
+                <option value="200m">200m</option>
+                <option value="400m">400m</option>
+            </select>
+
+            <label for="olymNr1">OLYMPIC NUMBER 1</label>
+            <input type="number" id="olymNr1" name="olymNr1">
+
+            <label for="olymNr2">OLYMPIC NUMBER 2</label>
+            <input type="number" id="olymNr2" name="olymNr2">
+
+            <label for="price">PRICE &lpar;&euro;&rpar;</label>
+            <input type="number" id="price" name="price" step="0.01">
+
+            <label for="seats">AMOUT OF SEATS</label>
+            <input type="number" id="seats" name="seats">
+
+            <div class="button_form">
+            	<a href="/games">
+	                <button class="outline">
+	                    &lt; BACK</button>
+	            </a>
+                <button type="submit" class="game_submit">ADD GAME</button>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

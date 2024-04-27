@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Sports</title>
+	<link rel="stylesheet" th:href="@{/css/sportsTable.css}">
+</head>
+<body>
+	<header>
+        <img src="/images/flame.png" alt="logo">
+        <p>Admin</p>
+        <p>email.email@gmail.com</p>
+        <form th:action="@{/logout}" method="post">
+        	<button type="submit" value="Logout">Logout</button>
+        </form>
+    </header>
+    <div class="sports_table">
+        <table>
+            <h2>OLYMPIC SPORTS</h2>
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="sports_table_td_container">
+                            <p>ATHLETICS</p>
+                            <a href="/games">                            
+                            	<button class="invis_button">GO TO GAMES ></button>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="sports_table_bottom">
+	        <a href="/tickets">
+	            <button>
+	                My Tickets
+	            </button>
+	       	</a>
+        </div>
+    </div>
+</body>
+</html>
