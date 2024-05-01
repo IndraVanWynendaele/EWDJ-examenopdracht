@@ -9,13 +9,13 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @SpringBootApplication
-@EnableJpaRepositories(basePackages = {"repository"})
-@EntityScan(basePackages = {"domain"})
-@ComponentScans({
-	@ComponentScan("service"),
-	@ComponentScan("domain"),
-	@ComponentScan("repository")
-})
+//@EnableJpaRepositories(basePackages = {"repository"})
+//@EntityScan(basePackages = {"domain"})
+//@ComponentScans({
+//	@ComponentScan("service"),
+//	@ComponentScan("domain"),
+//	@ComponentScan("repository")
+//})
 public class EwdJexamenopdrachtApplication implements WebMvcConfigurer {
 
 	public static void main(String[] args) {
