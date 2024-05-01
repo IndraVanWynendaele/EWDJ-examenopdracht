@@ -22,7 +22,7 @@
 					<td>
 						<div class="sports_table_td_container">
 							<p th:text=${sport.name}></p>
-							<a th:href="@{/games}">
+							<a th:href="|/sports/${sport.id}/games|">
 								<button class="invis_button">GO TO GAMES ></button>
 							</a>
 						</div>
