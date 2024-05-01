@@ -18,11 +18,11 @@
 		<table>
 			<h2>OLYMPIC SPORTS</h2>
 			<tbody>
-				<tr>
+				<tr th:each="sport : ${sportsList}">
 					<td>
 						<div class="sports_table_td_container">
-							<p>ATHLETICS</p>
-							<a href="/games">
+							<p th:text=${sport.name}></p>
+							<a th:href="@{/games}">
 								<button class="invis_button">GO TO GAMES ></button>
 							</a>
 						</div>
@@ -31,7 +31,7 @@
 			</tbody>
 		</table>
 		<div class="sports_table_bottom">
-			<a href="/tickets">
+			<a th:href="@{/tickets}">
 				<button>My Tickets</button>
 			</a>
 		</div>
