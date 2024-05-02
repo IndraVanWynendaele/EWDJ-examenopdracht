@@ -1,10 +1,16 @@
 package repository;
 
-import org.springframework.data.repository.CrudRepository;
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import domain.Game;
+import domain.Sport;
 
 @Repository
-public interface GameRepository extends CrudRepository<Game, Long> {
+public interface GameRepository extends JpaRepository<Game, Long> {
+
+	List<Game> findByOrderByDateAscTimeAsc();
+
 }

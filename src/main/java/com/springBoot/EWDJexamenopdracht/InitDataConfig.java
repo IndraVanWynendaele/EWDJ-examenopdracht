@@ -32,13 +32,13 @@ public class InitDataConfig implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		
 		Sport s1 = new Sport("Athletics");
-		Game g1 = new Game(LocalDate.of(2024, 5, 5), LocalTime.of(10, 0), 20.0, 100);
+		Game g1 = new Game(LocalDate.of(2024, 5, 5), LocalTime.of(15, 0), 20.0, 100);
 		Location l1 = new Location("Stade de France");
 		Discipline d1 = new Discipline("Running");
 		Discipline d2 = new Discipline("Jumping");
 		
 		Sport s2 = new Sport("Equestrian");
-		Game g2 = new Game(LocalDate.of(2024, 5, 6), LocalTime.of(15, 30), 25.0, 80);
+		Game g2 = new Game(LocalDate.of(2024, 5, 5), LocalTime.of(10, 30), 25.0, 80);
 		Location l2 = new Location("Villennes-sur-Seine Equestrian Center");
 		Discipline d3 = new Discipline("Cross");
 	    Game g3 = new Game(LocalDate.of(2024, 5, 7), LocalTime.of(12, 15), 15.0, 50);

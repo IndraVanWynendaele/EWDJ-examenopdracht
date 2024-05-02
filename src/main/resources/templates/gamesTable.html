@@ -43,7 +43,7 @@
                     <td th:text="${game.date}"></td>
                     <td th:text="${game.time}"></td>
                     <td th:text="${game.location.name}"></td>
-                    <td th:text="${game.disciplines}"></td>
+					<td th:text="${#strings.listJoin(game.disciplines.![name], ', ')}"></td>
                     <td th:text="${game.price}" class="right_td">€50,00</td>
                     <td th:text="${game.amountAvailable}" class="right_td">100</td>
                     <td th:text="${game.amount}" class="right_td">6</td>
