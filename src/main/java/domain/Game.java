@@ -31,9 +31,6 @@ public class Game implements Serializable {
 	@Column(name = "time")
 	private LocalTime time;
 
-	// TODO location
-	private String location;
-
 	// TODO disciplines
 	private String disciplines;
 
@@ -50,15 +47,17 @@ public class Game implements Serializable {
 
 	@Setter
 	private Sport sport;
+	
+	@Setter
+	@ManyToOne
+	private Location location;
 
-	public Game(LocalDate date, LocalTime time, String location, String disciplines, double price,
+	public Game(LocalDate date, LocalTime time, String disciplines, double price,
 			int amountAvailable) {
 		this.date = date;
 		this.time = time;
-		this.location = location;
 		this.disciplines = disciplines;
 		this.price = price;
 		this.amountAvailable = amountAvailable;
 	}
-
 }

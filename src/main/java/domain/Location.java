@@ -17,28 +17,24 @@ import lombok.NoArgsConstructor;
 @Entity
 @Getter
 @NoArgsConstructor
-public class Sport implements Serializable {
-
+public class Location implements Serializable {
+	
 	private static final long serialVersionUID = 1L;
-
+	
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	
 	@Column(name = "name")
 	private String name;
 	
-	@OneToMany
-	List<Game> games = new ArrayList<>();
+	@OneToMany(mappedBy = "location")
+	private List<Game> games;
+	
+	@ManyToMany(mappedBy = "locations")
+	private List<Sport> sports = new ArrayList<>();
 
-	public Sport(String name) {
+	public Location(String name) {
 		this.name = name;
-	}
-	
-	@ManyToMany
-	private List<Location> locations = new ArrayList<>();
-	
-	public void addGame(Game game) {
-		games.add(game);
-	}
+	}		
 }
