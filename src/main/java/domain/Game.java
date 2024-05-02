@@ -3,12 +3,15 @@ package domain;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -31,9 +34,6 @@ public class Game implements Serializable {
 	@Column(name = "time")
 	private LocalTime time;
 
-	// TODO disciplines
-	private String disciplines;
-
 	// TODO price
 	@Column(name = "price")
 	private double price;
@@ -45,18 +45,21 @@ public class Game implements Serializable {
 	// TODO # bought
 	private int amount;
 
+	// TODO bidirectioneel maken met game
 	@Setter
 	private Sport sport;
 	
 	@Setter
 	@ManyToOne
 	private Location location;
+	
+	@ManyToMany
+	List<Discipline> disciplines = new ArrayList<>();
 
-	public Game(LocalDate date, LocalTime time, String disciplines, double price,
+	public Game(LocalDate date, LocalTime time, double price,
 			int amountAvailable) {
 		this.date = date;
 		this.time = time;
-		this.disciplines = disciplines;
 		this.price = price;
 		this.amountAvailable = amountAvailable;
 	}

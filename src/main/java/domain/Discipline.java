@@ -1,7 +1,6 @@
 package domain;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.Column;
@@ -9,39 +8,35 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Getter
 @NoArgsConstructor
-public class Sport implements Serializable {
+public class Discipline implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-
+	
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	
 	@Column(name = "name")
 	private String name;
-	
-	@OneToMany
-	List<Game> games = new ArrayList<>();
-	
-	@OneToMany(mappedBy = "sport")
-	List<Discipline> disciplines = new ArrayList<>();
 
-	public Sport(String name) {
+	@ManyToMany(mappedBy = "disciplines")
+	List<Game> games;
+	
+	@ManyToOne
+	private Sport sport;
+	
+	
+	public Discipline(String name) {
+		super();
 		this.name = name;
-	}
-	
-	@ManyToMany
-	private List<Location> locations = new ArrayList<>();
-	
-	public void addGame(Game game) {
-		games.add(game);
 	}
 }
