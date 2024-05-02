@@ -3,6 +3,11 @@
   src: url("../fonts/Paris2024-Variable.ttf");
 }
 
+:root {
+  --main-color: #F65252;
+  --secondary-color: #F7E8EA;
+}
+
 * {
   font-family: "Paris2024", sans-serif;
   padding: 0;
@@ -10,8 +15,8 @@
 }
 
 header {
-    color: #F65252;
-    background-color: #F7E8EA;
+    color: var(--main-color);
+    background-color: var(--secondary-color);
     padding: 10px;
     display: flex;
     justify-content: flex-end;
@@ -30,7 +35,7 @@ header img {
 }
 
 header form button {
-    color: #F65252;
+    color:var(--main-color);
     background-color: inherit;
     border: none;
     padding: 0;

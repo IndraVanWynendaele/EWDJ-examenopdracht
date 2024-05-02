@@ -8,12 +8,12 @@
 }
 
 .sports_table h2 {
-    color: #F65252;
+    color: var(--main-color);
     margin-bottom: 20px;
 }
 
 .sports_table p {
-    color: #F65252;
+    color: var(--main-color);
     font-weight: bold;
 }
 
@@ -25,13 +25,13 @@
 
 .sports_table_td_container:hover button {
     visibility: visible;
-    color: #F65252;
+    color: var(--main-color);
     border: none;
-    background-color: #F7E8EA;
+    background-color: var(--secondary-color);
 }
 
 .sports_table_td_container:hover {
-    background-color: #F7E8EA;
+    background-color: var(--secondary-color);
 }
 
 .sports_table table {
@@ -44,14 +44,13 @@
 }
 
 .sports_table th .sports_table td {
-    border: 2px solid #F65252;
-    background-color: #eceff1;
+    border: 2px solid var(--main-color);
     padding: 8px;
 }
 
 .sports_table tr {
-    border-bottom: 2px solid #F65252;
-    border-top: 2px solid #F65252;
+    border-bottom: 2px solid var(--main-color);
+    border-top: 2px solid var(--main-color);
     font-size: small;
 }
 
@@ -76,9 +75,9 @@
 }
 
 .sports_table_bottom button {
-    color: #F65252;
+    color: var(--main-color);
     border: none;
-    background-color: #F7E8EA;
+    background-color: var(--secondary-color);
     padding: 1%;
     border-radius: 0 10px 10px;
     margin-top: 3%;

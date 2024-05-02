@@ -18,7 +18,7 @@
         <h4>&gt; 6 TICKETS WERE PURCHASED &lt;</h4>
         <table>
             <div class="add_game_btn">
-                <h2>ATHLETICS - GAMES</h2>
+                <h2 th:text="|${sport.name} - Games|"></h2>
                 <a href="/games/add">
                 	<button>ADD NEW GAME &gt;</button>
                 </a>
@@ -36,17 +36,17 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                <tr th:each="game: ${sport.games}">
                     <td>
                         <button>BUY</button>
                     </td>
-                    <td>22/12/2024</td>
-                    <td>17:00</td>
-                    <td>Stade de France</td>
-                    <td>Men's 100m, Women's Long Jump</td>
-                    <td class="right_td">€50,00</td>
-                    <td class="right_td">100</td>
-                    <td class="right_td">6</td>
+                    <td th:text="${game.date}"></td>
+                    <td th:text="${game.time}"></td>
+                    <td th:text="${game.location}"></td>
+                    <td th:text="${game.disciplines}"></td>
+                    <td th:text="${game.price}" class="right_td">€50,00</td>
+                    <td th:text="${game.amountAvailable}" class="right_td">100</td>
+                    <td th:text="${game.amount}" class="right_td">6</td>
                 </tr>
             </tbody>
         </table>

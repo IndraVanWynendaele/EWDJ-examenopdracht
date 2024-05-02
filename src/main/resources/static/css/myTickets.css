@@ -8,7 +8,7 @@
 }
 
 .tickets_table th {
-    color: #F65252;
+    color: var(--main-color);
     font-size: medium;
     padding: 10px 5px;
     white-space: nowrap;
@@ -26,13 +26,13 @@
 
 .tickets_table_td_container:hover button {
     visibility: visible;
-    color: #F65252;
+    color: var(--main-color);
     border: none;
-    background-color: #F7E8EA;
+    background-color: var(--secondary-color);
 }
 
 .tickets_table_td_container:hover {
-    background-color: #F7E8EA;
+    background-color: var(--secondary-color);
 }
 
 .tickets_table table {
@@ -45,8 +45,8 @@
 }
 
 .tickets_table tr {
-    border-bottom: 2px solid #F65252;
-    border-top: 2px solid #F65252;
+    border-bottom: 2px solid var(--main-color);
+    border-top: 2px solid var(--main-color);
     font-size: small;
 
 }
@@ -71,9 +71,9 @@
 }
 
 .tickets_table_bottom button {
-    color: #F65252;
+    color: var(--main-color);
     border: none;
-    background-color: #F7E8EA;
+    background-color: var(--secondary-color);
     padding: 1%;
     border-radius: 0 10px 10px;
     margin-top: 3%;
@@ -105,11 +105,11 @@
 }
 
 .add_game_btn h2 {
-    color: #F65252;
+    color: var(--main-color);
 }
 
 .tickets_table button {
-    color: #F65252;
+    color: var(--main-color);
     border: none;
     padding: 1%;
     font-size: medium;
@@ -121,9 +121,9 @@
 }
 
 .sports_table_bottom button {
-    color: #F65252;
+    color: var(--main-color);
     border: none;
-    background-color: #F7E8EA;
+    background-color: var(--secondary-color);
     padding: 1%;
     border-radius: 0 10px 10px;
     margin-top: 3%;
