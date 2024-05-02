@@ -34,9 +34,7 @@ public class Discipline implements Serializable {
 	@ManyToOne
 	private Sport sport;
 	
-	
 	public Discipline(String name) {
-		super();
 		this.name = name;
 	}
 }

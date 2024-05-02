@@ -27,6 +27,7 @@ public class SportsController {
 	
 	@GetMapping(value = "/{id}/games")
 	public String showGamesPage(@PathVariable long id, Model model) {
+		// fix methodes getGames(sportid) ffihewos
 		Optional<Sport> optionalSport = sr.findById(id);
 	    optionalSport.ifPresent(sport -> model.addAttribute("sport", sport));
 		return "gamesTable";

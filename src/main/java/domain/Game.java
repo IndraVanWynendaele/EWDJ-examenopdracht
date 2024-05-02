@@ -45,8 +45,8 @@ public class Game implements Serializable {
 	// TODO # bought
 	private int amount;
 
-	// TODO bidirectioneel maken met game
 	@Setter
+	@ManyToOne
 	private Sport sport;
 	
 	@Setter
@@ -62,5 +62,9 @@ public class Game implements Serializable {
 		this.time = time;
 		this.price = price;
 		this.amountAvailable = amountAvailable;
+	}
+
+	public void addDiscipline(Discipline d) {
+		disciplines.add(d);
 	}
 }

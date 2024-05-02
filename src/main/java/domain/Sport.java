@@ -28,7 +28,7 @@ public class Sport implements Serializable {
 	@Column(name = "name")
 	private String name;
 	
-	@OneToMany
+	@OneToMany(mappedBy = "sport")
 	List<Game> games = new ArrayList<>();
 	
 	@OneToMany(mappedBy = "sport")
