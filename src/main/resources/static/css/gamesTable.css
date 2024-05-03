@@ -132,3 +132,7 @@
     font-size: small;
     cursor: pointer;
 }
+
+.hover {
+	cursor: pointer;
+}

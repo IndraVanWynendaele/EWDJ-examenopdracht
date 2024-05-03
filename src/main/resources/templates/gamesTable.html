@@ -38,7 +38,9 @@
             <tbody>
                 <tr th:each="game: ${games}">
                     <td>
-                        <button>BUY</button>
+                    	<a th:href="@{/sports}">
+                        	<button class="hover">BUY</button>
+                        </a>
                     </td>
                     <td th:text="${game.date}"></td>
                     <td th:text="${game.time}"></td>
