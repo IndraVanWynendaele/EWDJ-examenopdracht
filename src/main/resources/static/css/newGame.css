@@ -36,6 +36,7 @@ select {
     cursor: pointer;
     width: 40%;
     white-space: nowrap;
+    font-size: small;
 }
 
 a {
@@ -48,8 +49,8 @@ a {
     border: 1px solid var(--main-color);
     padding: 14px 20px;
     cursor: pointer;
-    width: 40%;
     white-space: nowrap;
+    font-size: small;
 }
 
 button:hover {

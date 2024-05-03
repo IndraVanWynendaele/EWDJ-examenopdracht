@@ -14,7 +14,7 @@
         	<button type="submit" value="Logout">Logout</button>
         </form>
     </header>
-    <form th:action="@{/games/add}" method="post" class="game_form">
+    <form th:action="|/sports/${sport.id}/games/add|" method="post" class="game_form">
         <div class="container">
         	<h2 th:text="|NEW GAME FOR ${sport.name.toUpperCase()}|"></h2>
             <label for="date"><b>DATE</b></label>
@@ -49,10 +49,7 @@
             <input type="number" id="seats" name="seats">
 
             <div class="button_form">
-            	<a th:href="|/sports/${sport.id}/games|">
-	                <button class="outline">
-	                    &lt; BACK</button>
-	            </a>
+            	<a th:href="|/sports/${sport.id}/games|" class="outline">&lt; BACK</a>
                 <button type="submit" class="game_submit">ADD GAME</button>
             </div>
         </div>

@@ -64,7 +64,7 @@ public class SportsController {
 	
 	@PostMapping(value = "/{id}/games/add")
 	public String onSubmit() {
-		return "redirect:/games";
+		return "redirect:/sports";
 	}
 	
 }
