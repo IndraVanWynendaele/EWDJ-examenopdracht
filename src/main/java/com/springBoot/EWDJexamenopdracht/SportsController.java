@@ -43,7 +43,7 @@ public class SportsController {
 		}
 		
 		model.addAttribute("sport", optionalSport.get());
-		model.addAttribute("games", gr.findByOrderByDateAscTimeAsc());
+		model.addAttribute("games", gr.findBySportOrderByDateAscTimeAsc(optionalSport.get()));
 		
 		return "gamesTable";
 	}

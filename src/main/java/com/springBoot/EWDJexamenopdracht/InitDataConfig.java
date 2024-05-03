@@ -1,4 +1,4 @@
-package com.springBoot.EWDJexamenopdracht;
+	package com.springBoot.EWDJexamenopdracht;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -41,27 +41,34 @@ public class InitDataConfig implements CommandLineRunner {
 		Game g2 = new Game(LocalDate.of(2024, 5, 5), LocalTime.of(10, 30), 25.0, 80);
 		Location l2 = new Location("Villennes-sur-Seine Equestrian Center");
 		Discipline d3 = new Discipline("Cross");
+		
+		Sport s3 = new Sport("Surfing");
 	    Game g3 = new Game(LocalDate.of(2024, 5, 7), LocalTime.of(12, 15), 15.0, 50);
 	    Location l3 = new Location("La Torche, Brittany");
         Discipline d4 = new Discipline("Dressage");
         Discipline d5 = new Discipline("Jumping");
 		
-		Sport s3 = new Sport("Surfing");
+        Sport s4 = new Sport("Skating");
 		Game g4 = new Game(LocalDate.of(2024, 5, 8), LocalTime.of(9, 0), 30.0, 120);
 		Location l4 = new Location("Aquatics Center Georges Vallerey");
 		
-		Sport s4 = new Sport("Swimming");
+		Sport s5 = new Sport("Skateboarding");
 		Game g5 = new Game(LocalDate.of(2024, 5, 9), LocalTime.of(14, 45), 18.0, 70);
 		Location l5 = new Location("Le Dome Skatepark");
 		Discipline d6 = new Discipline("Street");
 		
 		
-		Sport s5 = new Sport("Skateboarding");
+		Sport s6 = new Sport("Artistic gymnastics");
 		Game g6 = new Game(LocalDate.of(2024, 5, 10), LocalTime.of(11, 30), 22.0, 90);
 		Location l6 = new Location("Palais des Sports Marcel Cerdan");
 		Discipline d7 = new Discipline("Floor Exercise");
 		
-		Sport s6 = new Sport("Artistic gymnastics");
+		g1.setSport(s1);
+		g2.setSport(s2);
+		g3.setSport(s2);
+		g4.setSport(s3);
+		g5.setSport(s4);
+		g6.setSport(s5);
 		
 		s1.addGame(g1);
 		s2.addGame(g2);
@@ -85,6 +92,13 @@ public class InitDataConfig implements CommandLineRunner {
 		g5.addDiscipline(d6);
 		g6.addDiscipline(d7);
 		
+		sr.save(s1);
+		sr.save(s2);
+		sr.save(s3);
+		sr.save(s4);
+		sr.save(s5);
+		sr.save(s6);
+		
 		lr.save(l1);
 		lr.save(l2);
 		lr.save(l3);
@@ -107,12 +121,7 @@ public class InitDataConfig implements CommandLineRunner {
 		gr.save(g5);
 		gr.save(g6);
 
-		sr.save(s1);
-		sr.save(s2);
-		sr.save(s3);
-		sr.save(s4);
-		sr.save(s5);
-		sr.save(s6);
+		
 	}
 
 }

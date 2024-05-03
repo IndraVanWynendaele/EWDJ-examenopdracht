@@ -15,13 +15,15 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Getter
-@NoArgsConstructor
+@Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Game implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -46,13 +48,12 @@ public class Game implements Serializable {
 
 	// TODO # bought
 	private int amount;
+	
+	// TODO olympic nr 1 en 2
 
-	@Setter
 	@ManyToOne
-	@JoinTable
 	private Sport sport;
 	
-	@Setter
 	@ManyToOne
 	private Location location;
 	
@@ -61,10 +62,10 @@ public class Game implements Serializable {
 
 	public Game(LocalDate date, LocalTime time, double price,
 			int amountAvailable) {
-		this.date = date;
-		this.time = time;
-		this.price = price;
-		this.amountAvailable = amountAvailable;
+		setDate(date);
+		setTime(time);
+		setPrice(price);
+		setAmount(amountAvailable);
 	}
 
 	public void addDiscipline(Discipline d) {
