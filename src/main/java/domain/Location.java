@@ -37,4 +37,8 @@ public class Location implements Serializable {
 	public Location(String name) {
 		this.name = name;
 	}		
+	
+	public void addSport(Sport sport) {
+		sports.add(sport);
+	}
 }

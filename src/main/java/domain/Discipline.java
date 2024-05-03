@@ -1,6 +1,7 @@
 package domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.Column;
@@ -30,7 +31,7 @@ public class Discipline implements Serializable {
 	private String name;
 
 	@ManyToMany(mappedBy = "disciplines")
-	List<Game> games;
+	List<Game> games = new ArrayList<>();
 	
 	@ManyToOne
 	private Sport sport;

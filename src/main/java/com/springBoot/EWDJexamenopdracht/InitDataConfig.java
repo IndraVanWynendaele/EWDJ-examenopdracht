@@ -48,7 +48,7 @@ public class InitDataConfig implements CommandLineRunner {
         Discipline d4 = new Discipline("Dressage");
         Discipline d5 = new Discipline("Jumping");
 		
-        Sport s4 = new Sport("Skating");
+        Sport s4 = new Sport("Swimming");
 		Game g4 = new Game(LocalDate.of(2024, 5, 8), LocalTime.of(9, 0), 30.0, 120);
 		Location l4 = new Location("Aquatics Center Georges Vallerey");
 		
@@ -84,6 +84,13 @@ public class InitDataConfig implements CommandLineRunner {
 		g5.setLocation(l5);
 		g6.setLocation(l6);
 		
+		s1.addLocation(l1);
+		s2.addLocation(l2);
+		s3.addLocation(l3);
+		s4.addLocation(l4);
+		s5.addLocation(l5);
+		s6.addLocation(l6);
+	
 		s1.addDiscipline(d1);
 		s1.addDiscipline(d2);
 		s2.addDiscipline(d3);
