@@ -56,7 +56,7 @@ public class SportsController {
 		}
 		
 		model.addAttribute("sport", optionalSport.get());
-		model.addAttribute("disciplines", dr.findAll());
+		model.addAttribute("disciplines", dr.findBySport(optionalSport.get()));
 		model.addAttribute("locations", lr.findAll());
 		
 		return "newGame";

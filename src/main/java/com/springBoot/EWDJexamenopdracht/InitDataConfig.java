@@ -57,7 +57,6 @@ public class InitDataConfig implements CommandLineRunner {
 		Location l5 = new Location("Le Dome Skatepark");
 		Discipline d6 = new Discipline("Street");
 		
-		
 		Sport s6 = new Sport("Artistic gymnastics");
 		Game g6 = new Game(LocalDate.of(2024, 5, 10), LocalTime.of(11, 30), 22.0, 90);
 		Location l6 = new Location("Palais des Sports Marcel Cerdan");
@@ -70,20 +69,6 @@ public class InitDataConfig implements CommandLineRunner {
 		g5.setSport(s4);
 		g6.setSport(s5);
 		
-		s1.addGame(g1);
-		s2.addGame(g2);
-		s2.addGame(g3);
-		s3.addGame(g4);
-		s4.addGame(g5);
-		s5.addGame(g6);
-		
-		g1.setLocation(l1);
-		g2.setLocation(l2);
-		g3.setLocation(l3);
-		g4.setLocation(l4);
-		g5.setLocation(l5);
-		g6.setLocation(l6);
-		
 		g1.addDiscipline(d1);
 		g1.addDiscipline(d2);
 		g2.addDiscipline(d3);
@@ -92,12 +77,27 @@ public class InitDataConfig implements CommandLineRunner {
 		g5.addDiscipline(d6);
 		g6.addDiscipline(d7);
 		
-		sr.save(s1);
-		sr.save(s2);
-		sr.save(s3);
-		sr.save(s4);
-		sr.save(s5);
-		sr.save(s6);
+		g1.setLocation(l1);
+		g2.setLocation(l2);
+		g3.setLocation(l3);
+		g4.setLocation(l4);
+		g5.setLocation(l5);
+		g6.setLocation(l6);
+		
+		s1.addDiscipline(d1);
+		s1.addDiscipline(d2);
+		s2.addDiscipline(d3);
+		s2.addDiscipline(d4);
+		s2.addDiscipline(d5);
+		s4.addDiscipline(d6);
+		s5.addDiscipline(d7);
+		
+		s1.addGame(g1);
+		s2.addGame(g2);
+		s2.addGame(g3);
+		s3.addGame(g4);
+		s4.addGame(g5);
+		s5.addGame(g6);
 		
 		lr.save(l1);
 		lr.save(l2);
@@ -113,6 +113,13 @@ public class InitDataConfig implements CommandLineRunner {
 		dr.save(d5);
 		dr.save(d6);
 		dr.save(d7);
+
+		sr.save(s1);
+		sr.save(s2);
+		sr.save(s3);
+		sr.save(s4);
+		sr.save(s5);
+		sr.save(s6);
 		
 		gr.save(g1);
 		gr.save(g2);
@@ -120,8 +127,22 @@ public class InitDataConfig implements CommandLineRunner {
 		gr.save(g4);
 		gr.save(g5);
 		gr.save(g6);
-
 		
+		d1.setSport(s1);
+		d2.setSport(s1);
+		d3.setSport(s2);
+		d4.setSport(s2);
+		d5.setSport(s2);
+		d6.setSport(s4);
+		d7.setSport(s5);
+		
+		dr.save(d1);
+		dr.save(d2);
+		dr.save(d3);
+		dr.save(d4);
+		dr.save(d5);
+		dr.save(d6);
+		dr.save(d7);
 	}
 
 }

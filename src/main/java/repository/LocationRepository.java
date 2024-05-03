@@ -12,5 +12,5 @@ import domain.Sport;
 public interface LocationRepository extends CrudRepository<Location, Long> {
 
 //	List<Location> findBySport(Sport sport);
-	
+
 }

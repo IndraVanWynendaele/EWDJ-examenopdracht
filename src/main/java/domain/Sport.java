@@ -44,4 +44,8 @@ public class Sport implements Serializable {
 	public void addGame(Game game) {
 		games.add(game);
 	}
+	
+	public void addDiscipline(Discipline discipline) {
+		disciplines.add(discipline);
+	}
 }
