@@ -32,6 +32,7 @@ public class Discipline implements Serializable {
 	List<Game> games;
 	
 	@ManyToOne
+	@JoinTable
 	private Sport sport;
 	
 	public Discipline(String name) {

@@ -29,7 +29,7 @@ public class Location implements Serializable {
 	private String name;
 	
 	@OneToMany(mappedBy = "location")
-	private List<Game> games;
+	private List<Game> games = new ArrayList<>();
 	
 	@ManyToMany(mappedBy = "locations")
 	private List<Sport> sports = new ArrayList<>();

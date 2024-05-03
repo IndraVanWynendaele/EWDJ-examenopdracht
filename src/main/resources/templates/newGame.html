@@ -16,7 +16,7 @@
     </header>
     <form th:action="@{/games/add}" method="post" class="game_form">
         <div class="container">
-        	<h2>NEW GAME FOR ATHLETICS</h2>
+        	<h2 th:text="|NEW GAME FOR ${sport.name.toUpperCase()}|"></h2>
             <label for="date"><b>DATE</b></label>
             <input type="date">
 
@@ -26,17 +26,14 @@
             <label for="location"><b>LOCATION</b></label>
             <select name="disciplines" id="disciplines">
                 <option value="none" selected disabled hidden=true>Select a location</option>
-                <option value="100m">JB Stadium</option>
-                <option value="200m">Stade de Paris</option>
-                <option value="400m">KLP Stadium</option>
+                <option th:each="location : ${locations}" th:value="${location.id}" th:text=${location.name}></option>
             </select>
 
             <label for="disciplines"><b>DISCIPLINE</b></label>
             <caption>ctrl + click to select multiple options</caption>
             <select name="disciplines" id="disciplines" multiple>
-                <option value="100m">100m</option>
-                <option value="200m">200m</option>
-                <option value="400m">400m</option>
+            	<option>No disciplines</option>
+                <option th:each="discipline : ${disciplines}" th:value="${discipline.id}" th:text="${discipline.name}"></option>
             </select>
 
             <label for="olymNr1">OLYMPIC NUMBER 1</label>

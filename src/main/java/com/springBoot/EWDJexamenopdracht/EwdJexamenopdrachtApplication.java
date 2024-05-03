@@ -9,8 +9,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @SpringBootApplication
 @EnableJpaRepositories("repository")
 @EntityScan("domain")
-//@EnableJpaRepositories(basePackages = {"repository"})
-//@EntityScan(basePackages = {"domain"})
 //@ComponentScans({
 //	@ComponentScan("service"),
 //	@ComponentScan("domain"),

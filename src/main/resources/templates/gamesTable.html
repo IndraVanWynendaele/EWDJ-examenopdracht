@@ -19,7 +19,7 @@
         <table>
             <div class="add_game_btn">
                 <h2 th:text="|${sport.name} - Games|"></h2>
-                <a href="/games/add">
+                <a th:href="|/sports/${sport.id}/games/add|">
                 	<button>ADD NEW GAME &gt;</button>
                 </a>
             </div>

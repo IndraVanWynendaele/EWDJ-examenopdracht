@@ -28,11 +28,11 @@ public class Sport implements Serializable {
 	@Column(name = "name")
 	private String name;
 	
-	@OneToMany
-	List<Game> games = new ArrayList<>();
+	@OneToMany(mappedBy = "sport")
+	private List<Game> games = new ArrayList<>();
 	
 	@OneToMany(mappedBy = "sport")
-	List<Discipline> disciplines = new ArrayList<>();
+	private List<Discipline> disciplines = new ArrayList<>();
 	
 	@ManyToMany
 	private List<Location> locations = new ArrayList<>();
