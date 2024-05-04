@@ -35,11 +35,9 @@ public class Game implements Serializable {
 	@Column(name = "time")
 	private LocalTime time;
 
-	// TODO price
 	@Column(name = "price")
 	private double price;
 
-	// TODO available
 	@Column(name = "amountAvailable")
 	private int amountAvailable;
 	
