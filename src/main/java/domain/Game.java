@@ -42,12 +42,13 @@ public class Game implements Serializable {
 	// TODO available
 	@Column(name = "amountAvailable")
 	private int amountAvailable;
-
-	// TODO # bought
-	private int amount;
 	
-	// TODO olympic nr 1 en 2
-
+	@Column(name = "olympicNrOne")
+	private int olympicNrOne;
+	
+	@Column(name = "olympicNrTwo")
+	private int olympicNrTwo;
+	
 	@ManyToOne
 	private Sport sport;
 	
@@ -58,11 +59,13 @@ public class Game implements Serializable {
 	List<Discipline> disciplines = new ArrayList<>();
 
 	public Game(LocalDate date, LocalTime time, double price,
-			int amountAvailable) {
+			int amountAvailable, int olympicNrOne, int olympicNrTwo) {
 		setDate(date);
 		setTime(time);
 		setPrice(price);
-		setAmount(amountAvailable);
+		setAmountAvailable(amountAvailable);
+		setOlympicNrOne(olympicNrOne);
+		setOlympicNrTwo(olympicNrTwo);
 	}
 
 	public void addDiscipline(Discipline d) {
