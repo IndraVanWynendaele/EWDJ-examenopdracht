@@ -3,7 +3,9 @@ package com.springBoot.EWDJexamenopdracht;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.format.FormatterRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @SpringBootApplication
@@ -25,5 +27,9 @@ public class EwdJexamenopdrachtApplication implements WebMvcConfigurer {
     public void addViewControllers(org.springframework.web.servlet.config.annotation.ViewControllerRegistry registry) {
         registry.addRedirectViewController("/", "/sports");
     }
-
+	
+	@Bean 
+	DateFormatter dateFormatter() {
+		return new DateFormatter();
+	}
 }
