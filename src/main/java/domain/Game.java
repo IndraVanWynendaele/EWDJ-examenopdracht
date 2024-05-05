@@ -13,6 +13,9 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -29,21 +32,35 @@ public class Game implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@NotNull
+	// TODO custom validator: liggen  tussen  26  juli 2024 en 11 augustus 2024.
 	@Column(name = "date")
 	private LocalDate date;
 
+	@NotNull
+	// TODO custom validator: Aanvanguur vanaf 8 uur.
 	@Column(name = "time")
 	private LocalTime time;
 
+	@NotNull
+	@Min(1)
+	@Max(149)
 	@Column(name = "price")
 	private double price;
 
+	@NotNull
+	@Min(1)
+	@Max(49)
 	@Column(name = "amountAvailable")
 	private int amountAvailable;
 	
-	@Column(name = "olympicNrOne")
+	// TODO custom validator: nr moet 5 tekens zijn
+	// TODO custom validator: 1e getal mag niet 0 zijn
+	// TODO custom validator: 1e en laatste cijfer verschillend
+	@Column(name = "olympicNrOne", unique = true)
 	private int olympicNrOne;
 	
+	// TODO custom validator: range -1000, +1000 tov nr1
 	@Column(name = "olympicNrTwo")
 	private int olympicNrTwo;
 	
@@ -53,6 +70,7 @@ public class Game implements Serializable {
 	@ManyToOne
 	private Location location;
 	
+	// TODO custom validator: Disciplines  mag  leeg  zijn.  Maximum 2mogen  ingevuld  worden.Twee  dezelfde disciplines mogen niet
 	@ManyToMany
 	List<Discipline> disciplines = new ArrayList<>();
 
