@@ -15,8 +15,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -34,35 +32,36 @@ public class Game implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@NotNull
-	// TODO custom validator: liggen  tussen  26  juli 2024 en 11 augustus 2024.
+	@NotNull(message = "{validation.null}")
 	@Column(name = "date")
 	private LocalDate date;
 
-	@NotNull
-	// TODO custom validator: Aanvanguur vanaf 8 uur.
+	@NotNull(message = "{validation.null}")
 	@Column(name = "time")
 	private LocalTime time;
 
-	@NotNull
+	@NotNull(message = "{validation.null}")
 	@Range(min = 1, max = 149, message = "{price.validation.range}")
 	@Column(name = "price")
 	private double price;
 
-	@NotNull
+	@NotNull(message = "{validation.null}")
 	@Range(min = 1, max = 49, message = "{amountAvailable.validation.range}")
 	@Column(name = "amountAvailable")
 	private int amountAvailable;
 	
+	@NotNull(message = "{validation.null}")
 	@Column(name = "olympicNrOne", unique = true)
 	private int olympicNrOne;
 	
+	@NotNull(message = "{validation.null}")
 	@Column(name = "olympicNrTwo")
 	private int olympicNrTwo;
 	
 	@ManyToOne
 	private Sport sport;
 	
+	@NotNull(message = "{validation.null}")
 	@ManyToOne
 	private Location location;
 	

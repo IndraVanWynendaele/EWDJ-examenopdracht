@@ -19,11 +19,11 @@
         <div class="container">
         	<h2 th:text="|NEW GAME FOR ${sport.name.toUpperCase()}|"></h2>
             <label for="date"><b>DATE</b></label>
-            <input type="date" th:field="*{date}">
+            <input required type="date" name="date" id="date" th:field="*{date}">
 			<span th:if="${#fields.hasErrors('date')}" th:errorclass="error" th:errors="*{date}"></span>
 			</br>
             <label for="psw"><b>TIME</b></label>
-            <input type="time" name="time" th:field="*{time}">
+            <input required type="time" name="time" th:field="*{time}">
 			<span th:if="${#fields.hasErrors('time')}" th:errorclass="error" th:errors="*{time}"></span>
 			</br>
             <label for="location"><b>LOCATION</b></label>
@@ -42,19 +42,19 @@
 <!--			TODO misschien best 2 dropdowns gelijk location voor validatie? idk wa het makkelijkste ga zijn-->
 			</br>
             <label for="olymNr1"><b>OLYMPIC NUMBER ONE</b></label>
-            <input type="number" id="olymNr1" th:field="*{olympicNrOne}" name="olymNr1">
+            <input required type="number" id="olymNr1" th:field="*{olympicNrOne}" name="olymNr1">
 			<span th:if="${#fields.hasErrors('olympicNrOne')}" th:errorclass="error" th:errors="*{olympicNrOne}"></span>
 			</br>
             <label for="olymNr2"><b>OLYMPIC NUMBER TWO</b></label>
-            <input type="number" id="olymNr2" name="olymNr2" th:field="*{olympicNrTwo}">
+            <input required type="number" id="olymNr2" name="olymNr2" th:field="*{olympicNrTwo}">
 			<span th:if="${#fields.hasErrors('olympicNrTwo')}" th:errorclass="error" th:errors="*{olympicNrTwo}"></span>
 			</br>
             <label for="price"><b>PRICE &lpar;&euro;&rpar;</b></label>
-            <input type="number" id="price" name="price" th:field="*{price}" step="0.01">
+            <input required type="number" id="price" name="price" th:field="*{price}" step="0.01">
 			<span th:if="${#fields.hasErrors('price')}" th:errorclass="error" th:errors="*{price}"></span>
 			</br>
             <label for="seats"><b>AMOUT OF SEATS</b></label>
-            <input type="number" id="seats" name="seats" th:field="*{amountAvailable}">
+            <input required type="number" id="seats" name="seats" th:field="*{amountAvailable}">
 			<span th:if="${#fields.hasErrors('amountAvailable')}" th:errorclass="error" th:errors="*{amountAvailable}"></span>
 			</br>
             <div class="button_form">

@@ -32,33 +32,33 @@ public class InitDataConfig implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		
 		Sport s1 = new Sport("Athletics");
-		Game g1 = new Game(LocalDate.of(2024, 5, 5), LocalTime.of(15, 0), 20.0, 10, 12345, 11345);
+		Game g1 = new Game(LocalDate.of(2024, 7, 26), LocalTime.of(15, 0), 20.0, 10, 12345, 11345);
 		Location l1 = new Location("Stade de France");
 		Discipline d1 = new Discipline("Running");
 		Discipline d2 = new Discipline("Jumping");
 		
 		Sport s2 = new Sport("Equestrian");
-		Game g2 = new Game(LocalDate.of(2024, 5, 5), LocalTime.of(10, 30), 25.0, 49, 23456, 22456);
+		Game g2 = new Game(LocalDate.of(2024, 7, 30), LocalTime.of(10, 30), 25.0, 49, 23456, 22456);
 		Location l2 = new Location("Villennes-sur-Seine Equestrian Center");
 		Discipline d3 = new Discipline("Cross");
 		
 		Sport s3 = new Sport("Surfing");
-	    Game g3 = new Game(LocalDate.of(2024, 5, 7), LocalTime.of(12, 15), 15.0, 1, 34567, 34578);
+	    Game g3 = new Game(LocalDate.of(2024, 7, 31), LocalTime.of(12, 15), 15.0, 1, 34567, 34578);
 	    Location l3 = new Location("La Torche, Brittany");
         Discipline d4 = new Discipline("Dressage");
         Discipline d5 = new Discipline("Jumping");
 		
         Sport s4 = new Sport("Swimming");
-		Game g4 = new Game(LocalDate.of(2024, 5, 8), LocalTime.of(9, 0), 30.0, 23, 98453, 99453);
+		Game g4 = new Game(LocalDate.of(2024, 8, 8), LocalTime.of(9, 0), 30.0, 23, 98453, 99453);
 		Location l4 = new Location("Aquatics Center Georges Vallerey");
 		
 		Sport s5 = new Sport("Skateboarding");
-		Game g5 = new Game(LocalDate.of(2024, 5, 9), LocalTime.of(14, 45), 18.0, 40, 78787, 78900);
+		Game g5 = new Game(LocalDate.of(2024, 8, 9), LocalTime.of(14, 45), 18.0, 40, 78787, 78900);
 		Location l5 = new Location("Le Dome Skatepark");
 		Discipline d6 = new Discipline("Street");
 		
 		Sport s6 = new Sport("Artistic gymnastics");
-		Game g6 = new Game(LocalDate.of(2024, 5, 10), LocalTime.of(11, 30), 22.0, 35, 45634, 45345);
+		Game g6 = new Game(LocalDate.of(2024, 8, 10), LocalTime.of(11, 30), 22.0, 35, 45634, 45345);
 		Location l6 = new Location("Palais des Sports Marcel Cerdan");
 		Discipline d7 = new Discipline("Floor Exercise");
 		

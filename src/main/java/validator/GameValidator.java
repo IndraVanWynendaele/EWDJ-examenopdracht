@@ -1,5 +1,8 @@
 package validator;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
@@ -35,6 +38,16 @@ public class GameValidator implements Validator {
 		if (game.getOlympicNrTwo() > game.getOlympicNrOne() + 1000 || game.getOlympicNrTwo() < game.getOlympicNrOne() - 1000) {
 			errors.rejectValue("olympicNrTwo", "olympicNrTwo.validation.range");
 			// TODO + 1000 and - 1000 niet meer hardcoden"
+		}
+		
+		if (game.getDate().isBefore(LocalDate.of(2024, 7, 26)) || game.getDate().isAfter(LocalDate.of(2024, 8, 11))) {
+			errors.rejectValue("date", "date.validation.range");
+			// TODO niet meer hardcoden dates in messages
+		}
+		
+		if (game.getTime().isBefore(LocalTime.of(8, 0))) {
+			errors.rejectValue("time", "time.validation.before");
+			// TODO uur niet meer hardcode in messages
 		}
 	}
 
