@@ -1,5 +1,6 @@
 package com.springBoot.EWDJexamenopdracht;
 
+import java.security.Principal;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,12 +14,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import domain.Game;
+import domain.MyUser;
 import domain.Sport;
 import jakarta.validation.Valid;
 import repository.DisciplineRepository;
 import repository.GameRepository;
 import repository.LocationRepository;
 import repository.SportRepository;
+import repository.UserRepository;
 import validator.GameValidator;
 
 @Controller
@@ -34,10 +37,14 @@ public class SportsController {
 	@Autowired 
 	private DisciplineRepository dr;
 	@Autowired
+	private UserRepository ur;
+	@Autowired
 	private GameValidator gv;
 
 	@GetMapping
-	public String showSportsPage(Model model) {
+	public String showSportsPage(Model model, Principal principal) {
+		model.addAttribute("email", principal.getName());
+		model.addAttribute("role", ur.findByEmail(principal.getName()).getRole());
 		model.addAttribute("sportsList", sr.findAll());
 		return "sportsTable";
 	}

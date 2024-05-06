@@ -21,8 +21,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 @AllArgsConstructor
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
-@EqualsAndHashCode(of = "email")
+@NoArgsConstructor
 @Table(name = "users")
 public class MyUser implements Serializable {
 

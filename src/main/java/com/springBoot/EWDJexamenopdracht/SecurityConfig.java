@@ -1,5 +1,7 @@
 package com.springBoot.EWDJexamenopdracht;
 
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,7 +20,6 @@ public class SecurityConfig {
 	@Autowired
 	private UserDetailsService uds;
 	
-	
 	@Autowired
 	public void configueGlobal(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(uds).passwordEncoder(new BCryptPasswordEncoder());
@@ -30,8 +31,10 @@ public class SecurityConfig {
 			.authorizeHttpRequests(requests ->
 					requests.requestMatchers("/login**").permitAll()
 					.requestMatchers("/css/**").permitAll()
+					.requestMatchers("/fonts/**").permitAll()
+					.requestMatchers("/images/**").permitAll()
 					.requestMatchers("/403**").permitAll()
-					.requestMatchers("/sports/**sw/games/add").hasAnyRole("ADMIN")
+					.requestMatchers("/sports/**sw/games/add").hasRole("ADMIN")
 					.requestMatchers("/sports/**").hasAnyRole("USER", "ADMIN"))
 			.formLogin(form ->
 					form.defaultSuccessUrl("/sports", true)

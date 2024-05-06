@@ -11,16 +11,22 @@
 		<div class="imgcontainer">
 			<img src="/images/paris2024.png" alt="Logo" class="logo">
 		</div>
+		
+		<div th:if="${msg}" class="msg" th:text="${msg}"></div>
+		
 
 		<div class="container">
-			<label for="uname"><b>Email</b></label> 
-			<input type="email" placeholder="Enter Email" name="email" required> 
+			<label for="email"><b>Email</b></label> 
+			<input type="email" placeholder="Enter Email" name="email" required /> 
 			
-			<label for="psw"><b>Password</b></label> 
-			<input type="password" placeholder="Enter Password" name="psw" required>
+			<label for="password"><b>Password</b></label> 
+			<input type="password" placeholder="Enter Password" name="password" required />
 
+			<div th:if="${error}" class="loginError" th:text="${error}"></div>
 			<button type="submit">Login</button>
 		</div>
+		
+		<input type="hidden" name="_csrf" th:value="${_csrf.token}" />
 	</form>
 </body>
 </html>

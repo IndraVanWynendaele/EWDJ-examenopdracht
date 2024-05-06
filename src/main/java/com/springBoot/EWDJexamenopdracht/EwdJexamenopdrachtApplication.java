@@ -5,8 +5,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import service.MyUserDetailsService;
 import validator.GameValidator;
 
 @SpringBootApplication
@@ -37,5 +39,10 @@ public class EwdJexamenopdrachtApplication implements WebMvcConfigurer {
 	@Bean
 	GameValidator registrationValidation() {
 		return new GameValidator();
+	}
+	
+	@Bean
+	UserDetailsService myUserDetailsService() {
+		return new MyUserDetailsService();
 	}
 }

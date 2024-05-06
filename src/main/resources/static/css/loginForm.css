@@ -5,7 +5,7 @@ form {
   margin: auto;
 }
 
-input[type=text],
+input[type=email],
 input[type=password] {
   width: 100%;
   padding: 12px 20px;
@@ -37,4 +37,12 @@ button:hover {
 
 .container {
   padding: 16px;
+}
+
+.loginError {
+	color: var(--main-color);
+}
+
+.msg {
+	color: #5eb37a;	
 }

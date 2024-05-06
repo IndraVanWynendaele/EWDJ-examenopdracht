@@ -10,15 +10,22 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
 import domain.MyUser;
 import domain.Role;
+import lombok.NoArgsConstructor;
 import repository.UserRepository;
 
+@Service
+@NoArgsConstructor
 public class MyUserDetailsService implements UserDetailsService {
 
 	@Autowired
 	private UserRepository userRepository;
+	
+//	@Autowired
+//	private PasswordEncoder passwordEncoder;
 	
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {

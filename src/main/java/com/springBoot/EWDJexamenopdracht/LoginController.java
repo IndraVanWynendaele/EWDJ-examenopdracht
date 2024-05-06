@@ -12,10 +12,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class LoginController {
 
 	@GetMapping
-	public String showLoginPage(@RequestParam(value = "logout", required = false) String logout, Model model) {
+	public String showLoginPage(@RequestParam(value = "error", required = false) String error, @RequestParam(value = "logout", required = false) String logout, Model model) {
+		
+		// TODO moeten deze berichten ook uit messages.properties komen??
+		if (error != null) {
+			model.addAttribute("error", "Invalid email or password!");
+		}
 		
 		if (logout != null) {
-            model.addAttribute("msg", "You've been logged out successfully.");
+            model.addAttribute("msg", "You've successfully logged out.");
         }
 		
 		return "loginForm";
