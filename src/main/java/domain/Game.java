@@ -6,6 +6,8 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.validator.constraints.Range;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -43,24 +45,18 @@ public class Game implements Serializable {
 	private LocalTime time;
 
 	@NotNull
-	@Min(1)
-	@Max(149)
+	@Range(min = 1, max = 149, message = "{price.validation.range}")
 	@Column(name = "price")
 	private double price;
 
 	@NotNull
-	@Min(1)
-	@Max(49)
+	@Range(min = 1, max = 49, message = "{amountAvailable.validation.range}")
 	@Column(name = "amountAvailable")
 	private int amountAvailable;
 	
-	// TODO custom validator: nr moet 5 tekens zijn
-	// TODO custom validator: 1e getal mag niet 0 zijn
-	// TODO custom validator: 1e en laatste cijfer verschillend
 	@Column(name = "olympicNrOne", unique = true)
 	private int olympicNrOne;
 	
-	// TODO custom validator: range -1000, +1000 tov nr1
 	@Column(name = "olympicNrTwo")
 	private int olympicNrTwo;
 	

@@ -52,3 +52,7 @@ header form {
 header button:hover {
     text-decoration: underline;
 }
+
+.error {
+	color: var(--main-color);
+}

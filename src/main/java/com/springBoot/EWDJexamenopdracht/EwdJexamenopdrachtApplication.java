@@ -5,8 +5,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.format.FormatterRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import validator.GameValidator;
 
 @SpringBootApplication
 @EnableJpaRepositories("repository")
@@ -31,5 +32,10 @@ public class EwdJexamenopdrachtApplication implements WebMvcConfigurer {
 	@Bean 
 	DateFormatter dateFormatter() {
 		return new DateFormatter();
+	}
+	
+	@Bean
+	GameValidator registrationValidation() {
+		return new GameValidator();
 	}
 }
