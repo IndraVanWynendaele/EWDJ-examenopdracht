@@ -1,0 +1,13 @@
+package repository;
+
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+
+import domain.MyUser;
+
+@Repository
+public interface UserRepository extends CrudRepository<MyUser, Long> {
+
+	MyUser findByEmail(String email);
+
+}

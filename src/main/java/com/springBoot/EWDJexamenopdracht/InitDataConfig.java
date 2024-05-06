@@ -5,19 +5,26 @@ import java.time.LocalTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import domain.Discipline;
 import domain.Game;
 import domain.Location;
+import domain.MyUser;
+import domain.Role;
 import domain.Sport;
 import repository.DisciplineRepository;
 import repository.GameRepository;
 import repository.LocationRepository;
 import repository.SportRepository;
+import repository.UserRepository;
 
 @Component
 public class InitDataConfig implements CommandLineRunner {
+	
+	private PasswordEncoder encoder = new BCryptPasswordEncoder();
 
 	@Autowired
 	private SportRepository sr;
@@ -27,9 +34,14 @@ public class InitDataConfig implements CommandLineRunner {
 	private LocationRepository lr;
 	@Autowired 
 	private DisciplineRepository dr;
+	@Autowired
+	private UserRepository ur;
 	
 	@Override
 	public void run(String... args) throws Exception {
+		
+		MyUser user = MyUser.builder().email("user@javaweb.com").role(Role.USER).password(encoder.encode("Password")).build();
+		MyUser admin = MyUser.builder().email("admin@javaweb.com").role(Role.ADMIN).password(encoder.encode("Password")).build();
 		
 		Sport s1 = new Sport("Athletics");
 		Game g1 = new Game(LocalDate.of(2024, 7, 26), LocalTime.of(15, 0), 20.0, 10, 12345, 11345);
@@ -105,6 +117,9 @@ public class InitDataConfig implements CommandLineRunner {
 		s3.addGame(g4);
 		s4.addGame(g5);
 		s5.addGame(g6);
+		
+		ur.save(user);
+		ur.save(admin);
 		
 		lr.save(l1);
 		lr.save(l2);
