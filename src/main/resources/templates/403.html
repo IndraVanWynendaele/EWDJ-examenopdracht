@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Access denied</title>
+	<link rel="stylesheet" th:href="@{/css/403.css}">
+</head>
+<body>
+	<h1>You're not allowed to view this page!</h1>
+
+	<form th:action="@{/logout}" method="post">
+		<input type="submit" value="Logout" /> 
+		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+	</form>
+</body>
+</html>

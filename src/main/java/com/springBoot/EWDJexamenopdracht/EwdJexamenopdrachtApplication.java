@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import service.MyUserDetailsService;
@@ -27,8 +28,9 @@ public class EwdJexamenopdrachtApplication implements WebMvcConfigurer {
 	
 	
 	@Override
-    public void addViewControllers(org.springframework.web.servlet.config.annotation.ViewControllerRegistry registry) {
-        registry.addRedirectViewController("/", "/sports");
+    public void addViewControllers(ViewControllerRegistry registry) {
+        registry.addRedirectViewController("/", "/login");
+        registry.addViewController("/403").setViewName("403");
     }
 	
 	@Bean 
@@ -37,7 +39,7 @@ public class EwdJexamenopdrachtApplication implements WebMvcConfigurer {
 	}
 	
 	@Bean
-	GameValidator registrationValidation() {
+	GameValidator gameValidation() {
 		return new GameValidator();
 	}
 	

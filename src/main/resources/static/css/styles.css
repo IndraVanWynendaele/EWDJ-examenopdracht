@@ -34,7 +34,7 @@ header img {
     margin-right: auto;
 }
 
-header form button {
+header form input {
     color:var(--main-color);
     background-color: inherit;
     border: none;

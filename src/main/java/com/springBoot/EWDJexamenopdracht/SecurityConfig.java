@@ -29,12 +29,14 @@ public class SecurityConfig {
 	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http.csrf(csrf -> csrf.csrfTokenRepository(new HttpSessionCsrfTokenRepository()))
 			.authorizeHttpRequests(requests ->
-					requests.requestMatchers("/login**").permitAll()
+					requests
+					.requestMatchers("/*").permitAll()
+					.requestMatchers("/login**").permitAll()
 					.requestMatchers("/css/**").permitAll()
 					.requestMatchers("/fonts/**").permitAll()
 					.requestMatchers("/images/**").permitAll()
 					.requestMatchers("/403**").permitAll()
-					.requestMatchers("/sports/**sw/games/add").hasRole("ADMIN")
+					.requestMatchers("/sports/*/games/add").hasRole("ADMIN")
 					.requestMatchers("/sports/**").hasAnyRole("USER", "ADMIN"))
 			.formLogin(form ->
 					form.defaultSuccessUrl("/sports", true)

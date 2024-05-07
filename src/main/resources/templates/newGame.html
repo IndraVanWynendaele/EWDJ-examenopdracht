@@ -8,11 +8,12 @@
 <body>
 	<header>
         <img src="/images/flame.png" alt="logo">
-        <p>Admin</p>
-        <p>email.email@gmail.com</p>
+        <p th:text="${role}"></p>
+        <p th:text="${email}"></p>
         <form th:action="@{/logout}" method="post">
-        	<button type="submit" value="Logout">Logout</button>
-        </form>
+				<input type="submit" value="Logout" />
+				<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+		</form>
     </header>
     <form th:action="|/sports/${sport.id}/games/add|" th:object="${game}" method="post" class="game_form">
 		<input type="hidden" name="id" th:value="${sport.id}" />
@@ -23,9 +24,11 @@
 			<span th:if="${#fields.hasErrors('date')}" th:errorclass="error" th:errors="*{date}"></span>
 			</br>
             <label for="psw"><b>TIME</b></label>
-            <input required type="time" name="time" th:field="*{time}">
+            <input required type="time" name="time" id="time" th:field="*{time}">
 			<span th:if="${#fields.hasErrors('time')}" th:errorclass="error" th:errors="*{time}"></span>
 			</br>
+			
+<!-- 			TODO location th:field -->
             <label for="location"><b>LOCATION</b></label>
             <select name="locations" id="locations">
                 <option value="none" selected disabled hidden=true>Select a location</option>
