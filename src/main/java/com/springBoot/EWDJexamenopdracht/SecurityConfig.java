@@ -33,9 +33,11 @@ public class SecurityConfig {
 					.requestMatchers("/fonts/**").permitAll()
 					.requestMatchers("/images/**").permitAll()
 					.requestMatchers("/403**").permitAll()
-					.requestMatchers("/sports/**").hasAnyRole("USER", "ADMIN")
+					.requestMatchers("/*").hasAnyRole("USER", "ADMIN")
+					.requestMatchers("/sports/").hasAnyRole("USER", "ADMIN")
+					.requestMatchers("/sports/*/games").hasAnyRole("USER", "ADMIN")
 					.requestMatchers("/sports/*/games/add").hasAnyRole("ADMIN")
-					.requestMatchers("/myTickets**").hasAnyRole("USER")) // TODO hij pakt da ni							
+					.requestMatchers("/myTickets**").hasAnyRole("USER"))						
 			.formLogin(form ->
 					form.defaultSuccessUrl("/sports", true)
 						.loginPage("/login")

@@ -33,29 +33,29 @@ public class Game implements Serializable {
 	private Long id;
 
 	@NotNull(message = "{validation.null}")
-	@Column(name = "date")
+	@Column(name = "date", nullable = false)
 	private LocalDate date;
 
 	@NotNull(message = "{validation.null}")
-	@Column(name = "time")
+	@Column(name = "time", nullable = false)
 	private LocalTime time;
 
 	@NotNull(message = "{validation.null}")
 	@Range(min = 1, max = 149, message = "{price.validation.range}")
-	@Column(name = "price")
+	@Column(name = "price", nullable = false)
 	private double price;
 
 	@NotNull(message = "{validation.null}")
 	@Range(min = 1, max = 49, message = "{amountAvailable.validation.range}")
-	@Column(name = "amountAvailable")
+	@Column(name = "amountAvailable", nullable = false)
 	private int amountAvailable;
 	
 	@NotNull(message = "{validation.null}")
-	@Column(name = "olympicNrOne", unique = true)
+	@Column(name = "olympicNrOne", unique = true, nullable = false)
 	private int olympicNrOne;
 	
 	@NotNull(message = "{validation.null}")
-	@Column(name = "olympicNrTwo")
+	@Column(name = "olympicNrTwo", nullable = false)
 	private int olympicNrTwo;
 	
 	@ManyToOne
