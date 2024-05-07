@@ -1,1 +1,23 @@
 @import url("./styles.css");
+
+div {
+	text-align: center;
+	color: var(--main-color);
+	padding: 20px;
+}
+
+h1 {
+	padding: 30px;
+}
+
+button {
+	color: var(--main-color);
+    border: none;
+    background-color: transparent;
+    font-size: medium;
+}
+
+button:hover {
+	text-decoration: underline;
+	cursor: pointer;
+}

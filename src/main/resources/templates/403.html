@@ -6,11 +6,21 @@
 	<link rel="stylesheet" th:href="@{/css/403.css}">
 </head>
 <body>
-	<h1>You're not allowed to view this page!</h1>
-
-	<form th:action="@{/logout}" method="post">
-		<input type="submit" value="Logout" /> 
-		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-	</form>
+	<header>
+        <img src="/images/flame.png" alt="logo">
+        <p th:text="${role}"></p>
+        <p th:text="${email}"></p>
+        <form th:action="@{/logout}" method="post">
+				<input type="submit" value="Logout" />
+				<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+		</form>
+    </header>
+	<div>
+		<h1>You're not allowed to view this page!</h1>
+		<a href="/sports">
+	            <button>
+	                &lt; GO TO HOME</button>
+	        </a>
+	</div>
 </body>
 </html>
