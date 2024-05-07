@@ -15,6 +15,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -51,10 +53,14 @@ public class Game implements Serializable {
 	private int amountAvailable;
 	
 	@NotNull(message = "{validation.null}")
+	@NotBlank
+	@NotEmpty
 	@Column(name = "olympicNrOne", unique = true, nullable = false)
 	private int olympicNrOne;
 	
 	@NotNull(message = "{validation.null}")
+	@NotBlank
+	@NotEmpty
 	@Column(name = "olympicNrTwo", nullable = false)
 	private int olympicNrTwo;
 	
