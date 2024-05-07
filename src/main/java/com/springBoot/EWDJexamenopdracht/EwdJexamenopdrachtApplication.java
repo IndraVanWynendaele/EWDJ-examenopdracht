@@ -29,7 +29,7 @@ public class EwdJexamenopdrachtApplication implements WebMvcConfigurer {
 	
 	@Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addRedirectViewController("/", "/login");
+        registry.addRedirectViewController("/", "/sports");
         registry.addViewController("/403").setViewName("403");
     }
 	

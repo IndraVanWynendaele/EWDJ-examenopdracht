@@ -77,6 +77,7 @@ public class SportsController {
 		Optional<Sport> optionalSport = sr.findById(id);
 		
 		if (!optionalSport.isPresent()) {
+			model.addAttribute("sportsList", sr.findAll());
 			return "sportsTable";
 		}
 		
@@ -93,6 +94,7 @@ public class SportsController {
 		Optional<Sport> optionalSport = sr.findById(id);
 		
 	    if (!optionalSport.isPresent()) {
+	    	model.addAttribute("sportsList", sr.findAll());
 	        return "sportsTable";
 	    }
 	    

@@ -28,14 +28,12 @@ public class SecurityConfig {
 		http.csrf(csrf -> csrf.csrfTokenRepository(new HttpSessionCsrfTokenRepository()))
 			.authorizeHttpRequests(requests ->
 					requests
-					.requestMatchers("/*").permitAll()
 					.requestMatchers("/login**").permitAll()
 					.requestMatchers("/css/**").permitAll()
 					.requestMatchers("/fonts/**").permitAll()
 					.requestMatchers("/images/**").permitAll()
 					.requestMatchers("/403**").permitAll()
 					.requestMatchers("/sports/**").hasAnyRole("USER", "ADMIN")
-					.requestMatchers("/sports").hasAnyRole("USER", "ADMIN")
 					.requestMatchers("/sports/*/games/add").hasAnyRole("ADMIN")
 					.requestMatchers("/myTickets**").hasAnyRole("USER")) // TODO hij pakt da ni							
 			.formLogin(form ->
