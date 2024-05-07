@@ -1,7 +1,5 @@
 package com.springBoot.EWDJexamenopdracht;
 
-import javax.sql.DataSource;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -36,8 +34,10 @@ public class SecurityConfig {
 					.requestMatchers("/fonts/**").permitAll()
 					.requestMatchers("/images/**").permitAll()
 					.requestMatchers("/403**").permitAll()
-					.requestMatchers("/sports/*/games/add").hasRole("ADMIN")
-					.requestMatchers("/sports/**").hasAnyRole("USER", "ADMIN"))
+					.requestMatchers("/sports/**").hasAnyRole("USER", "ADMIN")
+					.requestMatchers("/sports").hasAnyRole("USER", "ADMIN")
+					.requestMatchers("/sports/*/games/add").hasAnyRole("ADMIN")
+					.requestMatchers("/myTickets**").hasAnyRole("USER")) // TODO hij pakt da ni							
 			.formLogin(form ->
 					form.defaultSuccessUrl("/sports", true)
 						.loginPage("/login")

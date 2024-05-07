@@ -41,12 +41,12 @@ public class SportsController {
 	private UserRepository ur;
 	@Autowired
 	private GameValidator gv;
-
     
     @ModelAttribute("email")
     public String username(Principal principal) {
         return principal.getName();
     }
+    
     @ModelAttribute("role")
     public Role role(Principal principal) {
         return ur.findByEmail(principal.getName()).getRole();
@@ -62,6 +62,7 @@ public class SportsController {
 	public String showGamesPage(@PathVariable long id, Model model) {
 		Optional<Sport> optionalSport = sr.findById(id);
 		if (!optionalSport.isPresent()) {
+			model.addAttribute("sportsList", sr.findAll());
 			return "sportsTable";
 		}
 		
