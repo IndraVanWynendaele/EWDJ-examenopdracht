@@ -16,11 +16,11 @@
 		</form>
     </header>
     <div class="games_table">
-        <h4>&gt; 6 TICKETS WERE PURCHASED &lt;</h4>
+        <h4 th:if="${role == 'USER'}">&gt; 6 TICKETS WERE PURCHASED &lt;</h4>
         <table>
             <div class="add_game_btn">
                 <h2 th:text="|${sport.name} - Games|"></h2>
-                <a th:href="|/sports/${sport.id}/games/add|">
+                <a th:if="${role == 'ADMIN'}" th:href="|/sports/${sport.id}/games/add|">
                 	<button>ADD NEW GAME &gt;</button>
                 </a>
             </div>
@@ -33,7 +33,7 @@
                     <th>DISCIPLINE</th>
                     <th class="right_td">PRICE</th>
                     <th class="right_td"># AVAILABLE</th>
-                    <th class="right_td"># BOUGHT</th>
+                    <th th:if="${role == 'USER'}" class="right_td"># BOUGHT</th>
                 </tr>
             </thead>
             <tbody>
@@ -49,7 +49,7 @@
 					<td th:text="${#strings.listJoin(game.disciplines.![name], ', ')}"></td>
                     <td th:text="|€ ${#numbers.formatDecimal(game.price, 2, 2)}|" class="right_td"></td>
                     <td th:text="${game.amountAvailable}" class="right_td"></td>
-                    <td class="right_td">6 TODO</td>
+                    <td th:if="${role == 'USER'}" class="right_td">6 TODO</td>
                 </tr>
             </tbody>
         </table>

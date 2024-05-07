@@ -15,8 +15,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -43,7 +43,8 @@ public class Game implements Serializable {
 	private LocalTime time;
 
 	@NotNull(message = "{validation.null}")
-	@Range(min = 1, max = 149, message = "{price.validation.range}")
+	@DecimalMin(value = "0.01", message = "{price.validation.min}")
+	@DecimalMax(value = "149.99", message = "{price.validation.max}")
 	@Column(name = "price", nullable = false)
 	private double price;
 

@@ -1,9 +1,12 @@
 package com.springBoot.EWDJexamenopdracht;
 
 import java.security.Principal;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -48,12 +51,13 @@ public class SportsController {
     }
     
     @ModelAttribute("role")
-    public Role role(Principal principal) {
-        return ur.findByEmail(principal.getName()).getRole();
+    public String role(Principal principal) {
+        return ur.findByEmail(principal.getName()).getRole().toString();
     }
 	
 	@GetMapping
 	public String showSportsPage(Model model, Principal principal) {
+		model.addAttribute("role", ur.findByEmail(principal.getName()).getRole());
 		model.addAttribute("sportsList", sr.findAll());
 		return "sportsTable";
 	}
@@ -110,6 +114,7 @@ public class SportsController {
 		}
 		
 		sport.addGame(game);
+		game.setSport(sport);
 		gr.save(game);
 		
 		return "redirect:/sports/{id}/games";
