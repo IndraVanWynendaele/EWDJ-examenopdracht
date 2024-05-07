@@ -28,9 +28,8 @@
 			<span th:if="${#fields.hasErrors('time')}" th:errorclass="error" th:errors="*{time}"></span>
 			</br>
 			
-<!-- 			TODO location th:field -->
             <label for="location"><b>LOCATION</b></label>
-            <select name="locations" id="locations">
+            <select name="locations" id="locations" th:field="*{location}" required>
                 <option value="none" selected disabled hidden=true>Select a location</option>
                 <option th:each="location : ${locations}" th:value="${location.id}" th:text=${location.name}></option>
             </select>

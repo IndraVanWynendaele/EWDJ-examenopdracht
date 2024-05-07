@@ -53,14 +53,10 @@ public class Game implements Serializable {
 	private int amountAvailable;
 	
 	@NotNull(message = "{validation.null}")
-	@NotBlank
-	@NotEmpty
 	@Column(name = "olympicNrOne", unique = true, nullable = false)
 	private int olympicNrOne;
 	
 	@NotNull(message = "{validation.null}")
-	@NotBlank
-	@NotEmpty
 	@Column(name = "olympicNrTwo", nullable = false)
 	private int olympicNrTwo;
 	

@@ -98,15 +98,19 @@ public class SportsController {
 	        return "sportsTable";
 	    }
 	    
-	    model.addAttribute("sport", optionalSport.get());
-	    model.addAttribute("disciplines", dr.findBySport(optionalSport.get()));
-		model.addAttribute("locations", lr.findBySports(optionalSport.get()));
+	    Sport sport = optionalSport.get();
+	    model.addAttribute("sport", sport);
+	    model.addAttribute("disciplines", dr.findBySport(sport));
+		model.addAttribute("locations", lr.findBySports(sport));
 		
 		gv.validate(game, result);
 		
 		if (result.hasErrors()) {
 			return "newGame";
 		}
+		
+		sport.addGame(game);
+		gr.save(game);
 		
 		return "redirect:/sports/{id}/games";
 	}
