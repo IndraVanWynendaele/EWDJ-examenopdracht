@@ -6,15 +6,7 @@
 	<link rel="stylesheet" th:href="@{/css/myTickets.css}">
 </head>
 <body>
-	<header>
-        <img src="/images/flame.png" alt="logo">
-        <p th:text="${role}"></p>
-        <p th:text="${email}"></p>
-        <form th:action="@{/logout}" method="post">
-				<input type="submit" value="Logout" />
-				<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-		</form>
-    </header>
+	<header th:include="navbar :: navigation"></header>
     <div class="tickets_table">
         <table>
             <div class="add_game_btn">

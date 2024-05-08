@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Games</title>
+	<link rel="stylesheet" th:href="@{/css/gamesTable.css}">
+</head>
+<body>
+	<header th:fragment="navigation">
+        <img src="/images/flame.png" alt="logo">
+        <p th:text="${role}"></p>
+        <p th:text="${email}"></p>
+        <form th:action="@{/logout}" method="post">
+				<input type="submit" value="Logout" />
+				<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+		</form>
+    </header>
+</body>
+</html>
