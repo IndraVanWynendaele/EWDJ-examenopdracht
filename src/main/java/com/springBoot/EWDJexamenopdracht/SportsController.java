@@ -57,7 +57,6 @@ public class SportsController {
 	
 	@GetMapping
 	public String showSportsPage(Model model, Principal principal) {
-		model.addAttribute("role", ur.findByEmail(principal.getName()).getRole());
 		model.addAttribute("sportsList", sr.findAll());
 		return "sportsTable";
 	}

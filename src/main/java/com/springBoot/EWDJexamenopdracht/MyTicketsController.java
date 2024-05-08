@@ -18,14 +18,14 @@ public class MyTicketsController {
 	@Autowired
 	private UserRepository ur;
 	
-	@ModelAttribute("email")
+    @ModelAttribute("email")
     public String username(Principal principal) {
         return principal.getName();
     }
     
     @ModelAttribute("role")
-    public Role role(Principal principal) {
-        return ur.findByEmail(principal.getName()).getRole();
+    public String role(Principal principal) {
+        return ur.findByEmail(principal.getName()).getRole().toString();
     }
 
 	@GetMapping
