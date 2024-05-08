@@ -31,7 +31,6 @@ public class Location implements Serializable {
 	@NotBlank
 	@NotEmpty
 	@NotNull
-	@Column(name = "name", nullable = false)
 	private String name;
 	
 	@OneToMany(mappedBy = "location")

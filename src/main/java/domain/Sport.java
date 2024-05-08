@@ -31,7 +31,6 @@ public class Sport implements Serializable {
 	@NotNull
 	@NotBlank
 	@NotEmpty
-	@Column(name = "name", nullable = false)
 	private String name;
 	
 	@OneToMany(mappedBy = "sport")

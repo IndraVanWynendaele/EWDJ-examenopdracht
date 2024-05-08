@@ -33,7 +33,6 @@ public class Discipline implements Serializable {
 	@NotBlank
 	@NotEmpty
 	@NotNull
-	@Column(name = "name", nullable = false)
 	private String name;
 
 	@ManyToMany(mappedBy = "disciplines")

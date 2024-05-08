@@ -35,30 +35,25 @@ public class Game implements Serializable {
 	private Long id;
 
 	@NotNull(message = "{validation.null}")
-	@Column(name = "date", nullable = false)
 	private LocalDate date;
 
 	@NotNull(message = "{validation.null}")
-	@Column(name = "time", nullable = false)
 	private LocalTime time;
 
 	@NotNull(message = "{validation.null}")
 	@DecimalMin(value = "0.01", message = "{price.validation.min}")
 	@DecimalMax(value = "149.99", message = "{price.validation.max}")
-	@Column(name = "price", nullable = false)
 	private double price;
 
 	@NotNull(message = "{validation.null}")
 	@Range(min = 1, max = 49, message = "{amountAvailable.validation.range}")
-	@Column(name = "amountAvailable", nullable = false)
 	private int amountAvailable;
 	
 	@NotNull(message = "{validation.null}")
-	@Column(name = "olympicNrOne", unique = true, nullable = false)
+	@Column(unique = true)
 	private int olympicNrOne;
 	
 	@NotNull(message = "{validation.null}")
-	@Column(name = "olympicNrTwo", nullable = false)
 	private int olympicNrTwo;
 	
 	@ManyToOne
