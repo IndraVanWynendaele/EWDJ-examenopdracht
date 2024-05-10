@@ -17,7 +17,7 @@ public class GameValidator implements Validator {
 
 	@Override
 	public void validate(Object target, Errors errors) {
-
+		
 		Game game = (Game) target;
 		String olnronestring = Integer.toString(game.getOlympicNrOne());
 		
@@ -48,6 +48,10 @@ public class GameValidator implements Validator {
 		if (game.getTime().isBefore(LocalTime.of(8, 0))) {
 			errors.rejectValue("time", "time.validation.before");
 			// TODO uur niet meer hardcode in messages
+		}
+		
+		if (game.getDisciplines().size() > 2) {
+			errors.rejectValue("disciplines", "disciplines.validation.size");
 		}
 	}
 

@@ -9,7 +9,7 @@
 <body>
 	<header th:include="navbar :: navigation"></header>
     <form th:action="|/sports/${sport.id}/games/add|" th:object="${game}" method="post" class="game_form">
-		<input type="hidden" name="id" th:value="${sport.id}" />
+<!-- 		<input type="hidden" name="id" th:value="${sport.id}" /> -->
         <div class="container">
         	<h2 th:text="|NEW GAME FOR ${sport.name.toUpperCase()}|"></h2>
             <label for="date"><b>DATE</b></label>
@@ -33,14 +33,15 @@
             	<option>No disciplines</option>
                 <option th:each="discipline : ${disciplines}" th:value="${discipline.id}" th:text="${discipline.name}"></option>
             </select>
+            <span th:if="${#fields.hasErrors('disciplines')}" th:errorclass="error" th:errors="*{disciplines}"></span>
 <!--			TODO misschien best 2 dropdowns gelijk location voor validatie? idk wa het makkelijkste ga zijn-->
 			</br>
-            <label for="olymNr1"><b>OLYMPIC NUMBER ONE</b></label>
-            <input required type="number" id="olymNr1" th:field="*{olympicNrOne}" name="olymNr1">
+            <label for="olympicNrOne"><b>OLYMPIC NUMBER ONE</b></label>
+            <input required type="number" id="olympicNrOne" th:field="*{olympicNrOne}" name="ololympicNrOneymNr1">
 			<span th:if="${#fields.hasErrors('olympicNrOne')}" th:errorclass="error" th:errors="*{olympicNrOne}"></span>
 			</br>
-            <label for="olymNr2"><b>OLYMPIC NUMBER TWO</b></label>
-            <input required type="number" id="olymNr2" name="olymNr2" th:field="*{olympicNrTwo}">
+            <label for="olympicNrTwo"><b>OLYMPIC NUMBER TWO</b></label>
+            <input required type="number" id="olympicNrTwo" name="olympicNrTwo" th:field="*{olympicNrTwo}">
 			<span th:if="${#fields.hasErrors('olympicNrTwo')}" th:errorclass="error" th:errors="*{olympicNrTwo}"></span>
 			</br>
             <label for="price"><b>PRICE &lpar;&euro;&rpar;</b></label>

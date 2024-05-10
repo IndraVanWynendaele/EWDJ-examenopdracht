@@ -93,7 +93,7 @@ public class SportsController {
 	}
 	
 	@PostMapping(value = "/{id}/games/add")
-	public String onSubmit(@RequestParam("id") Long id, @Valid Game game, BindingResult result, Model model) {
+	public String onSubmit(@PathVariable Long id, @Valid Game game, BindingResult result, Model model) { // als opeens error : @RequestParam("id") Long id ipv pathvariable + in form aanpassen
 		Optional<Sport> optionalSport = sr.findById(id);
 		
 	    if (!optionalSport.isPresent()) {
@@ -105,16 +105,26 @@ public class SportsController {
 	    model.addAttribute("sport", sport);
 	    model.addAttribute("disciplines", dr.findBySport(sport));
 		model.addAttribute("locations", lr.findBySports(sport));
-		
 		gv.validate(game, result);
 		
 		if (result.hasErrors()) {
 			return "newGame";
 		}
 		
-		sport.addGame(game);
-		game.setSport(sport);
-		gr.save(game);
+		// TODO lelijke oplossing brb crying hiding in een put
+		Game g = new Game();
+		g.setDate(game.getDate());
+		g.setAmountAvailable(game.getAmountAvailable());
+		g.setDisciplines(game.getDisciplines());
+		g.setLocation(game.getLocation());
+		g.setOlympicNrOne(game.getOlympicNrOne());
+		g.setOlympicNrTwo(game.getOlympicNrTwo());
+		g.setPrice(game.getPrice());
+		g.setTime(game.getTime());
+		
+		sport.addGame(g);
+		g.setSport(sport);
+		gr.save(g);
 		
 		return "redirect:/sports/{id}/games";
 	}

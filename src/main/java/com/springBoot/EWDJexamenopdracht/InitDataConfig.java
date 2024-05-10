@@ -48,6 +48,7 @@ public class InitDataConfig implements CommandLineRunner {
 		Location l1 = new Location("Stade de France");
 		Discipline d1 = new Discipline("Running");
 		Discipline d2 = new Discipline("Jumping");
+		Discipline d8 = new Discipline("Sprints");
 		
 		Sport s2 = new Sport("Equestrian");
 		Game g2 = new Game(LocalDate.of(2024, 7, 30), LocalTime.of(10, 30), 25.0, 49, 23456, 22456);
@@ -105,6 +106,7 @@ public class InitDataConfig implements CommandLineRunner {
 	
 		s1.addDiscipline(d1);
 		s1.addDiscipline(d2);
+		s1.addDiscipline(d8);
 		s2.addDiscipline(d3);
 		s2.addDiscipline(d4);
 		s2.addDiscipline(d5);
@@ -135,6 +137,7 @@ public class InitDataConfig implements CommandLineRunner {
 		dr.save(d5);
 		dr.save(d6);
 		dr.save(d7);
+		dr.save(d8);
 
 		sr.save(s1);
 		sr.save(s2);
@@ -157,6 +160,7 @@ public class InitDataConfig implements CommandLineRunner {
 		d5.setSport(s2);
 		d6.setSport(s4);
 		d7.setSport(s5);
+		d8.setSport(s1);
 		
 		dr.save(d1);
 		dr.save(d2);
@@ -165,6 +169,7 @@ public class InitDataConfig implements CommandLineRunner {
 		dr.save(d5);
 		dr.save(d6);
 		dr.save(d7);
+		dr.save(d8);
 	}
 
 }
