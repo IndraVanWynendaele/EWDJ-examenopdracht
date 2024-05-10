@@ -28,13 +28,11 @@
 			<span th:if="${#fields.hasErrors('location')}" th:errorclass="error" th:errors="*{location}"></span>
 			</br>
             <label for="disciplines"><b>DISCIPLINE</b></label>
-            <caption>ctrl + click to select multiple options</caption>
+            <caption>ctrl + click to (de)select options</caption>
             <select name="disciplines" id="disciplines" multiple>
-            	<option>No disciplines</option>
                 <option th:each="discipline : ${disciplines}" th:value="${discipline.id}" th:text="${discipline.name}"></option>
             </select>
             <span th:if="${#fields.hasErrors('disciplines')}" th:errorclass="error" th:errors="*{disciplines}"></span>
-<!--			TODO misschien best 2 dropdowns gelijk location voor validatie? idk wa het makkelijkste ga zijn-->
 			</br>
             <label for="olympicNrOne"><b>OLYMPIC NUMBER ONE</b></label>
             <input required type="number" id="olympicNrOne" th:field="*{olympicNrOne}" name="ololympicNrOneymNr1">
