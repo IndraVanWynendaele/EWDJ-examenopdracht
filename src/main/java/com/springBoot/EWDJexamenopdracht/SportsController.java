@@ -75,9 +75,9 @@ public class SportsController {
 		return "gamesTable";
 	}
 	
-	@GetMapping(value = "/{id}/games/add")
-	public String showAddGamePage(@PathVariable long id, Model model) {
-		Optional<Sport> optionalSport = sr.findById(id);
+	@GetMapping(value = "/{sportId}/games/add")
+	public String showAddGamePage(@PathVariable long sportId, Model model) {
+		Optional<Sport> optionalSport = sr.findById(sportId);
 		
 		if (!optionalSport.isPresent()) {
 			model.addAttribute("sportsList", sr.findAll());
@@ -92,9 +92,9 @@ public class SportsController {
 		return "newGame";
 	}
 	
-	@PostMapping(value = "/{id}/games/add")
-	public String onSubmit(@PathVariable Long id, @Valid Game game, BindingResult result, Model model) { // als opeens error : @RequestParam("id") Long id ipv pathvariable + in form aanpassen
-		Optional<Sport> optionalSport = sr.findById(id);
+	@PostMapping(value = "/{sportId}/games/add")
+	public String onSubmit(@PathVariable long sportId, @Valid Game game, BindingResult result, Model model) {
+		Optional<Sport> optionalSport = sr.findById(sportId);
 		
 	    if (!optionalSport.isPresent()) {
 	    	model.addAttribute("sportsList", sr.findAll());
@@ -111,22 +111,11 @@ public class SportsController {
 			return "newGame";
 		}
 		
-		// TODO lelijke oplossing brb crying hiding in een put
-		Game g = new Game();
-		g.setDate(game.getDate());
-		g.setAmountAvailable(game.getAmountAvailable());
-		g.setDisciplines(game.getDisciplines());
-		g.setLocation(game.getLocation());
-		g.setOlympicNrOne(game.getOlympicNrOne());
-		g.setOlympicNrTwo(game.getOlympicNrTwo());
-		g.setPrice(game.getPrice());
-		g.setTime(game.getTime());
+		sport.addGame(game);
+		game.setSport(sport);
+		gr.save(game);
 		
-		sport.addGame(g);
-		g.setSport(sport);
-		gr.save(g);
-		
-		return "redirect:/sports/{id}/games";
+		return "redirect:/sports/{sportId}/games";
 	}
 	
 }

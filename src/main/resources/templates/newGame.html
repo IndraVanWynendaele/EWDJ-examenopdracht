@@ -9,7 +9,6 @@
 <body>
 	<header th:include="navbar :: navigation"></header>
     <form th:action="|/sports/${sport.id}/games/add|" th:object="${game}" method="post" class="game_form">
-<!-- 		<input type="hidden" name="id" th:value="${sport.id}" /> -->
         <div class="container">
         	<h2 th:text="|NEW GAME FOR ${sport.name.toUpperCase()}|"></h2>
             <label for="date"><b>DATE</b></label>
