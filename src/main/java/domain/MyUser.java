@@ -1,6 +1,8 @@
 package domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -9,17 +11,14 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Data
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "users")
@@ -38,7 +37,19 @@ public class MyUser implements Serializable {
 	private String password;
 	
 	@Enumerated(EnumType.STRING)
-	@Column(length = 20)
+	@Column(length = 20, nullable = false)
 	private Role role;
 	
+	@OneToMany(mappedBy = "user")
+	List<Ticket> tickets = new ArrayList<>();
+	
+	public void addTicket(Ticket t) {
+		tickets.add(t);
+	}
+
+	public MyUser(String email, String password, Role role) {
+		setEmail(email);
+		setPassword(password);
+		setRole(role);
+	}	
 }

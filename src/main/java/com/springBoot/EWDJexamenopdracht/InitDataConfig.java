@@ -15,10 +15,12 @@ import domain.Location;
 import domain.MyUser;
 import domain.Role;
 import domain.Sport;
+import domain.Ticket;
 import repository.DisciplineRepository;
 import repository.GameRepository;
 import repository.LocationRepository;
 import repository.SportRepository;
+import repository.TicketRepository;
 import repository.UserRepository;
 
 @Component
@@ -36,6 +38,12 @@ public class InitDataConfig implements CommandLineRunner {
 	private DisciplineRepository dr;
 	@Autowired
 	private UserRepository ur;
+	@Autowired 
+	private TicketRepository tr;
+	
+	private MyUser user;
+	private MyUser user2;
+	private MyUser admin;
 	
 	@Override
 	public void run(String... args) throws Exception {	
@@ -49,9 +57,9 @@ public class InitDataConfig implements CommandLineRunner {
 	}
 	
 	private void initUsers() {
-		MyUser user = MyUser.builder().email("user@javaweb.com").role(Role.USER).password(encoder.encode("Password")).build();
-		MyUser user2 = MyUser.builder().email("user2@javaweb.com").role(Role.USER).password(encoder.encode("Password")).build();
-		MyUser admin = MyUser.builder().email("admin@javaweb.com").role(Role.ADMIN).password(encoder.encode("Password")).build();
+		user = new MyUser("user@javaweb.com", encoder.encode("Password"), Role.USER);
+		user2 = new MyUser("user2@javaweb.com", encoder.encode("Password"), Role.USER);
+		admin = new MyUser("admin@javaweb.com", encoder.encode("Password"), Role.ADMIN);
 		
 		ur.save(user);
 		ur.save(user2);
@@ -167,6 +175,27 @@ public class InitDataConfig implements CommandLineRunner {
 		gr.save(g15);
 		gr.save(g16);
 		gr.save(g17);
+		
+		Ticket t1 = new Ticket();
+		t1.setGame(g1);
+		t1.setUser(user);
+		Ticket t11 = new Ticket();
+		t11.setGame(g17);
+		t11.setUser(user);
+		Ticket t12 = new Ticket();
+		t12.setGame(g17);
+		t12.setUser(user2);
+		
+		user.addTicket(t1);
+		user.addTicket(t11);
+		user2.addTicket(t12);
+		g1.addTicket(t1);
+		g17.addTicket(t11);
+		g17.addTicket(t12);
+		
+		tr.save(t1);
+		tr.save(t11);
+		tr.save(t12);
 	}
 	
 	private void initSportEquestrian() {

@@ -15,6 +15,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.DecimalMax;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotNull;
@@ -65,6 +66,9 @@ public class Game implements Serializable {
 	@ManyToOne
 	private Location location;
 	
+	@OneToMany(mappedBy = "game")
+	List<Ticket> tickets = new ArrayList<>();
+	
 	// TODO custom validator: Disciplines  mag  leeg  zijn.  Maximum 2mogen  ingevuld  worden.Twee  dezelfde disciplines mogen niet
 	@ManyToMany
 	List<Discipline> disciplines = new ArrayList<>();
@@ -81,5 +85,9 @@ public class Game implements Serializable {
 
 	public void addDiscipline(Discipline d) {
 		disciplines.add(d);
+	}
+	
+	public void addTicket(Ticket t) {
+		tickets.add(t);
 	}
 }
