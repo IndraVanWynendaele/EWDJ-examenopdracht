@@ -53,6 +53,10 @@ public class GameValidator implements Validator {
 		if (game.getDisciplines().size() > 2) {
 			errors.rejectValue("disciplines", "disciplines.validation.size");
 		}
+		
+		if (game.getDisciplines().size() == 2 && game.getDisciplines().getFirst().getId() == game.getDisciplines().getLast().getId()) {
+			errors.rejectValue("disciplines", "disciplines.validation.equal");
+		}
 	}
 
 }
