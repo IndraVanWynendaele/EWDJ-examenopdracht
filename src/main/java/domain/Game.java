@@ -88,6 +88,7 @@ public class Game implements Serializable {
 	}
 	
 	public void addTicket(Ticket t) {
+		this.setAmountAvailable(amountAvailable - 1);
 		tickets.add(t);
 	}
 }

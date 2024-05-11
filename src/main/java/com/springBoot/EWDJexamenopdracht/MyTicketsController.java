@@ -1,14 +1,16 @@
 package com.springBoot.EWDJexamenopdracht;
 
 import java.security.Principal;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import domain.Role;
+import repository.TicketRepository;
 import repository.UserRepository;
 
 @Controller
@@ -17,6 +19,8 @@ public class MyTicketsController {
 	
 	@Autowired
 	private UserRepository ur;
+	@Autowired
+	private TicketRepository tr;
 	
     @ModelAttribute("email")
     public String username(Principal principal) {
@@ -29,7 +33,8 @@ public class MyTicketsController {
     }
 
 	@GetMapping
-	public String showMyTicketsPage() {
+	public String showMyTicketsPage(Model model, Principal principal) {
+	    model.addAttribute("groupedTickets", tr.countTicketsGroupedByGame(ur.findByEmail(principal.getName()).getId()));
 		return "myTickets";
 	}	
 }
