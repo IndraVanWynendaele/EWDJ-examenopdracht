@@ -24,7 +24,7 @@
 				</tr>
 			</tbody>
 		</table>
-		<div th:if="${role == 'USER'}" class="sports_table_bottom">
+		<div th:if="${user.role.toString() == 'USER' && user.tickets.size() > 0}" class="sports_table_bottom">
 			<a th:href="@{/myTickets}">
 				<button>My Tickets</button>
 			</a>

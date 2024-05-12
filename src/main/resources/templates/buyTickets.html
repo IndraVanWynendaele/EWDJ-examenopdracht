@@ -10,6 +10,8 @@
 	<header th:include="navbar :: navigation"></header>
 	<form th:action="|/sports/${sport.id}/games/${game.id}/buy|" method="post" th:object="${ticket}" class="buy_form">
 		<h2 th:text="|Buy tickets for the ${sport.name} game on ${game.date} here!|"></h2>
+		<p th:text="${amountOfTickets > 0 ? 'You''ve already bought ' + amountOfTickets + ' tickets for this game' : ''}"></p>
+		<br/>
 		<label for="amount"><b>AMOUNT OF TICKETS</b></label>
         <input required type="number" id="amount" name="amount">
 		<span th:if="${#fields.hasErrors('amount')}" th:errorclass="error" th:errors="*{amount}"></span>

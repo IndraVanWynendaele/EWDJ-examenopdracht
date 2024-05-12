@@ -46,4 +46,9 @@ public class Location implements Serializable {
 	public void addSport(Sport sport) {
 		sports.add(sport);
 	}
+	
+	public void addGame(Game game) {
+		games.add(game);
+	}
+	
 }

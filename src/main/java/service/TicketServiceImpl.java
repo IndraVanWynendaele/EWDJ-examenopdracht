@@ -1,6 +1,6 @@
 package service;
 
-import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,9 +26,9 @@ public class TicketServiceImpl implements TicketService {
 	
 	@Override
 	public void buyTicket(Ticket ticket, Game game, MyUser user) {
-		List<Ticket> existingTickets = tr.findByGameAndUser(game, user);
-	    if (!existingTickets.isEmpty()) {
-	        Ticket existingTicket = existingTickets.get(0);
+		Optional<Ticket> optionalTicket = tr.findByGameAndUser(game, user);
+	    if (optionalTicket.isPresent()) {
+	        Ticket existingTicket = optionalTicket.get();
 	        existingTicket.setAmount(existingTicket.getAmount() + ticket.getAmount());
 	        game.setAmountLeft(game.getAmountLeft() - ticket.getAmount());
 	        gr.save(game);

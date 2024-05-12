@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import domain.Game;
 import domain.MyUser;
@@ -50,17 +51,12 @@ public class SportsController {
 	private TicketValidator tv;
 	@Autowired
 	private TicketService ts;
-    
-    @ModelAttribute("email")
-    public String username(Principal principal) {
-        return principal.getName();
-    }
-    
-    @ModelAttribute("role")
-    public String role(Principal principal) {
-        return ur.findByEmail(principal.getName()).getRole().toString();
-    }
 	
+    @ModelAttribute("user")
+    public MyUser user(Principal principal) {
+        return ur.findByEmail(principal.getName());
+    }
+    
 	@GetMapping
 	public String showSportsPage(Model model, Principal principal) {
 		model.addAttribute("sportsList", sr.findAll());
@@ -77,7 +73,6 @@ public class SportsController {
 		
 		model.addAttribute("sport", optionalSport.get());
 		model.addAttribute("games", gr.findBySportOrderByDateAscTimeAsc(optionalSport.get()));
-		
 		return "gamesTable";
 	}
 	
@@ -126,7 +121,7 @@ public class SportsController {
 	}
 	
 	@GetMapping(value = "/{sportId}/games/{gameId}/buy")
-	public String showBuyTicketsPage(@PathVariable long sportId, @PathVariable long gameId, Model model) {
+	public String showBuyTicketsPage(@PathVariable long sportId, @PathVariable long gameId, Model model, Principal principal) {
 		Optional<Game> optionalGame = gr.findById(gameId);
 		Optional<Sport> optionalSport = sr.findById(sportId);
 		
@@ -135,6 +130,13 @@ public class SportsController {
 	        return "sportsTable";
 	    }
 	    
+	    Optional<Ticket> ticketOptional = tr.findByGameAndUser(optionalGame.get(), ur.findByEmail(principal.getName()));
+	    if (ticketOptional.isPresent()) {
+	        Ticket ticket = ticketOptional.get();
+	        model.addAttribute("amountOfTickets", ticket.getAmount());
+	    } else {
+	        model.addAttribute("amountOfTickets", 0); // or any default value you prefer
+	    }
 	    model.addAttribute("game", optionalGame.get());
 	    model.addAttribute("sport", optionalSport.get());
 	    model.addAttribute("ticket", new Ticket());
@@ -142,7 +144,7 @@ public class SportsController {
 	}
 	
 	@PostMapping(value = "/{sportId}/games/{gameId}/buy")
-	public String buyTickets(@PathVariable long sportId, @PathVariable long gameId, @Valid Ticket ticket, Model model, BindingResult result, Principal principal) {	
+	public String buyTickets(@PathVariable long sportId, @PathVariable long gameId, @Valid Ticket ticket, Model model, BindingResult result, Principal principal, RedirectAttributes redirectAttributes) {	
 		Optional<Game> optionalGame = gr.findById(gameId);
 		Optional<Sport> optionalSport = sr.findById(sportId);
 		
@@ -165,6 +167,9 @@ public class SportsController {
 		}
 		
 		ts.buyTicket(ticket, game, user);
+		
+		redirectAttributes.addFlashAttribute("amountBought", ticket.getAmount());
+		redirectAttributes.addFlashAttribute("game", ticket.getGame());
 		
 		return "redirect:/sports/{sportId}/games";
 	}

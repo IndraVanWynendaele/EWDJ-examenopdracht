@@ -46,6 +46,7 @@ public class InitDataConfig implements CommandLineRunner {
 	
 	private MyUser user;
 	private MyUser user2;
+	private MyUser user3;
 	private MyUser admin;
 	
 	@Override
@@ -62,10 +63,12 @@ public class InitDataConfig implements CommandLineRunner {
 	private void initUsers() {
 		user = new MyUser("user@javaweb.com", encoder.encode("Password"), Role.USER);
 		user2 = new MyUser("user2@javaweb.com", encoder.encode("Password"), Role.USER);
+		user3 = new MyUser("user3@javaweb.com", encoder.encode("Password"), Role.USER);
 		admin = new MyUser("admin@javaweb.com", encoder.encode("Password"), Role.ADMIN);
 		
 		ur.save(user);
 		ur.save(user2);
+		ur.save(user3);
 		ur.save(admin);
 	}
 	

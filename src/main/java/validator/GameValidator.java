@@ -3,6 +3,7 @@ package validator;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
@@ -34,6 +35,7 @@ public class GameValidator implements Validator {
 		if (olnronestring.charAt(0) == olnronestring.charAt(olnronestring.length() - 1)) {
 			errors.rejectValue("olympicNrOne", "olympicNrOne.validation.firstAndLast");
 		}
+		
 		
 		if (game.getOlympicNrTwo() > game.getOlympicNrOne() + 1000 || game.getOlympicNrTwo() < game.getOlympicNrOne() - 1000) {
 			errors.rejectValue("olympicNrTwo", "olympicNrTwo.validation.range");
