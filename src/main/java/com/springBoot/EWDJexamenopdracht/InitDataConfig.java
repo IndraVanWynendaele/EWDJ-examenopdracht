@@ -22,6 +22,7 @@ import repository.LocationRepository;
 import repository.SportRepository;
 import repository.TicketRepository;
 import repository.UserRepository;
+import service.TicketService;
 
 @Component
 public class InitDataConfig implements CommandLineRunner {
@@ -40,6 +41,8 @@ public class InitDataConfig implements CommandLineRunner {
 	private UserRepository ur;
 	@Autowired 
 	private TicketRepository tr;
+	@Autowired
+	private TicketService ts;
 	
 	private MyUser user;
 	private MyUser user2;
@@ -184,37 +187,33 @@ public class InitDataConfig implements CommandLineRunner {
 		t11.setGame(g17);
 		t11.setUser(user);
 		t11.setAmount(19);
-		Ticket t12 = new Ticket();
-		t12.setGame(g17);
-		t12.setUser(user);
-		t12.setAmount(4);
 		Ticket t13 = new Ticket();
 		t13.setGame(g17);
 		t13.setUser(user2);
 		t13.setAmount(7);
 		
-		user.addTicket(t1);
-		user.addTicket(t11);
-		user.addTicket(t12);
-		user2.addTicket(t13);
-		g1.addTicket(t1);
-		g17.addTicket(t11);
-		g17.addTicket(t12);
-		g17.addTicket(t13);
+		ts.buyTicket(t1, g1, user);
+		ts.buyTicket(t11, g17, user);
+		ts.buyTicket(t13, g17, user2);
+//		user.addTicket(t1);
+//		user.addTicket(t11);
+//		user2.addTicket(t13);
+//		g1.addTicket(t1);
+//		g17.addTicket(t11);
+//		g17.addTicket(t13);
 		
-		tr.save(t1);
-		tr.save(t11);
-		tr.save(t12);
-		tr.save(t13);
-		
-		gr.save(g1);
-		gr.save(g11);
-		gr.save(g12);
-		gr.save(g13);
-		gr.save(g14);
-		gr.save(g15);
-		gr.save(g16);
-		gr.save(g17);
+//		tr.save(t1);
+//		tr.save(t11);
+//		tr.save(t13);
+//		
+//		gr.save(g1);
+//		gr.save(g11);
+//		gr.save(g12);
+//		gr.save(g13);
+//		gr.save(g14);
+//		gr.save(g15);
+//		gr.save(g16);
+//		gr.save(g17);
 	}
 	
 	private void initSportEquestrian() {

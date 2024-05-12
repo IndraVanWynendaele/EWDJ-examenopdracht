@@ -117,6 +117,7 @@ public class SportsController {
 			return "newGame";
 		}
 		
+		// TODO miss hier ook serice voor gebruiken ipv heir de 3 stappen te doen?		
 		sport.addGame(game);
 		game.setSport(sport);
 		gr.save(game);
@@ -154,6 +155,7 @@ public class SportsController {
 	    MyUser user = ur.findByEmail(principal.getName());
 	    model.addAttribute("game", game);
 	    model.addAttribute("sport", optionalSport.get());
+	    
 	    ticket.setGame(game);
 	    ticket.setUser(user);
 		tv.validate(ticket, result);
@@ -162,11 +164,7 @@ public class SportsController {
 			return "buyTickets";
 		}
 		
-		game.addTicket(ticket);
-		user.addTicket(ticket);
-		tr.save(ticket);
-		gr.save(game);
-		ur.save(user);
+		ts.buyTicket(ticket, game, user);
 		
 		return "redirect:/sports/{sportId}/games";
 	}

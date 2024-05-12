@@ -52,6 +52,8 @@ public class Game implements Serializable {
 	@Range(min = 1, max = 49, message = "{amountAvailable.validation.range}")
 	private int amountAvailable;
 	
+	private int amountLeft;
+	
 	@NotNull(message = "{validation.null}")
 	@Column(unique = true)
 	private int olympicNrOne;
@@ -69,7 +71,6 @@ public class Game implements Serializable {
 	@OneToMany(mappedBy = "game")
 	List<Ticket> tickets = new ArrayList<>();
 	
-	// TODO custom validator: Disciplines  mag  leeg  zijn.  Maximum 2mogen  ingevuld  worden.Twee  dezelfde disciplines mogen niet
 	@ManyToMany
 	List<Discipline> disciplines = new ArrayList<>();
 
@@ -79,6 +80,7 @@ public class Game implements Serializable {
 		setTime(time);
 		setPrice(price);
 		setAmountAvailable(amountAvailable);
+		setAmountLeft(amountAvailable);
 		setOlympicNrOne(olympicNrOne);
 		setOlympicNrTwo(olympicNrTwo);
 	}
@@ -88,7 +90,6 @@ public class Game implements Serializable {
 	}
 	
 	public void addTicket(Ticket t) {
-		this.setAmountAvailable(amountAvailable - 1);
 		tickets.add(t);
 	}
 }

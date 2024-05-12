@@ -4,7 +4,6 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 import domain.Ticket;
-import service.TicketServiceImpl;
 
 public class TicketValidator implements Validator {
 
@@ -18,12 +17,12 @@ public class TicketValidator implements Validator {
 		
 		Ticket ticket = (Ticket) target;
 		
-		if (ticket.getUser().getTickets().size() + ticket.getAmount() > 100) {
+		if (ticket.getUser().getTickets().stream().mapToInt(Ticket::getAmount).sum() + ticket.getAmount() > 100) {
 			errors.rejectValue("amount", "amount.validation.toomany");
 			return;
 		}
 		
-		if (ticket.getAmount() > ticket.getGame().getAmountAvailable()) {
+		if (ticket.getAmount() > ticket.getGame().getAmountLeft()) {
 			errors.rejectValue("amount", "amount.validation.notenough");
 			return;
 		}

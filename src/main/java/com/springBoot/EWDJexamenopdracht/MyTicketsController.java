@@ -34,7 +34,7 @@ public class MyTicketsController {
 
 	@GetMapping
 	public String showMyTicketsPage(Model model, Principal principal) {
-	    model.addAttribute("tickets", tr.findByUserOrderBySportAscDateDesc(ur.findByEmail(principal.getName())));
+	    model.addAttribute("tickets", tr.findByUserOrderBySportAscDateAsc(ur.findByEmail(principal.getName())));
 		return "myTickets";
 	}	
 }
