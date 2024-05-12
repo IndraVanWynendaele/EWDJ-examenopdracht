@@ -16,10 +16,21 @@ public class TicketValidator implements Validator {
 	public void validate(Object target, Errors errors) {
 		
 		TicketServiceImpl ticketService = (TicketServiceImpl) target;
+		
+		if (ticketService.getAmount() > ticketService.getGame().getAmountAvailable()) {
+			errors.rejectValue("amount", "amount.validation.notenough");
+		}
+		
+		if (ticketService.getUser().getTickets().size() + ticketService.getAmount() > 100) {
+			errors.rejectValue("amount", "amount.validation.toomany");
+		}
+		
+		if (ticketService.getAmount() > 20) {
+			errors.rejectValue("amount", "amount.validation.toobig");
+		}
         
-		System.out.println("----------------" + ticketService.getAmount() + "----------------");
         if (ticketService.getAmount() <= 0) {
-            errors.rejectValue("amount", "negativeOrZero", "Amount must be greater than zero");
+            errors.rejectValue("amount", "amount.validation.notnull");
         }
 	}
 

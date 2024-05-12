@@ -27,6 +27,10 @@ public class TicketServiceImpl implements TicketService {
     private UserRepository ur;
     @Getter @Setter
     private int amount;
+    @Getter @Setter
+    private Game game;
+    @Getter @Setter
+    private MyUser user;
 
 	@Override
 	public void buyTicket(int amount, long gameId, long userId) {

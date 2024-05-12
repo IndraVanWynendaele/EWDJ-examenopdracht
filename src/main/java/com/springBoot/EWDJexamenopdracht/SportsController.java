@@ -130,7 +130,7 @@ public class SportsController {
 	    	model.addAttribute("sportsList", sr.findAll());
 	        return "sportsTable";
 	    }
-	    
+	    System.out.println("------------GET-----------------" + sportId + "-------------GET----------------" + gameId + "--------------GET---------------");
 	    model.addAttribute("sport", optionalSport.get());
 	    model.addAttribute("game", optionalGame.get());
 	    model.addAttribute("ticketService", new TicketServiceImpl());
@@ -138,8 +138,11 @@ public class SportsController {
 	}
 	
 	@PostMapping(value = "/{sportId}/games/{gameId}/buy")
-	public String buyTickets(@RequestParam("amount") int amount, @PathVariable long sportId, @PathVariable long gameId, @ModelAttribute("ticketService") TicketServiceImpl ticketService, Model model, BindingResult result, Principal principal) {	
+	public String buyTickets(@PathVariable long sportId, @PathVariable long gameId, @RequestParam("amount") int amount, @Valid TicketServiceImpl ticketService, Model model, BindingResult result, Principal principal) {	
 		ticketService.setAmount(amount);
+		ticketService.setGame(gr.findById(gameId).get());
+		ticketService.setUser(ur.findByEmail(principal.getName()));
+
 		tv.validate(ticketService, result);
 		
 		if (result.hasErrors()) {
