@@ -32,7 +32,7 @@
             <tbody>
                 <tr th:each="game: ${games}">
                     <td>
-                    	<a th:href="@{/sports}">
+                    	<a th:href="|/sports/${sport.id}/games/${game.id}/buy|">
                         	<button class="hover">BUY</button>
                         </a>
                     </td>

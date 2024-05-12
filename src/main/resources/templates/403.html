@@ -7,15 +7,7 @@
 	<link rel="icon" type="image/x-icon" href="/images/paris-favicon.ico">
 </head>
 <body>
-	<header>
-        <img src="/images/flame.png" alt="logo">
-        <p th:text="${role}"></p>
-        <p th:text="${email}"></p>
-        <form th:action="@{/logout}" method="post">
-				<input type="submit" value="Logout" />
-				<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-		</form>
-    </header>
+	<header th:include="navbar :: navigation"></header>
 	<div>
 		<h1>You're not allowed to view this page!</h1>
 		<a href="/sports">

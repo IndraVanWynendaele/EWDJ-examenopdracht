@@ -37,7 +37,8 @@ public class SecurityConfig {
 					.requestMatchers("/sports/").hasAnyRole("USER", "ADMIN")
 					.requestMatchers("/sports/*/games").hasAnyRole("USER", "ADMIN")
 					.requestMatchers("/sports/*/games/add").hasAnyRole("ADMIN")
-					.requestMatchers("/myTickets**").hasAnyRole("USER"))						
+					.requestMatchers("/myTickets**").hasAnyRole("USER")
+					.requestMatchers("/sports/*/games/*/buy").hasAnyRole("USER"))
 			.formLogin(form ->
 					form.defaultSuccessUrl("/sports", true)
 						.loginPage("/login")

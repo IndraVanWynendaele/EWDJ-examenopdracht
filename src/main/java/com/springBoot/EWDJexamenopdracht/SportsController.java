@@ -118,4 +118,9 @@ public class SportsController {
 		return "redirect:/sports/{sportId}/games";
 	}
 	
+	@GetMapping(value = "/{sportId}/games/{gameId}/buy")
+	public String showBuyTicketsPage(@PathVariable long sportId, @PathVariable long gameId) {
+		return "buyTickets";
+	}
+	
 }
