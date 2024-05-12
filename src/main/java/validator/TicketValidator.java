@@ -18,7 +18,7 @@ public class TicketValidator implements Validator {
 		Ticket ticket = (Ticket) target;
 		
 		if (ticket.getUser().getTickets().stream().mapToInt(Ticket::getAmount).sum() + ticket.getAmount() > 100) {
-			errors.rejectValue("amount", "amount.validation.toomany");
+			errors.rejectValue("amount", "amount.validation.toomany", new Object[] {"100"}, null);
 			return;
 		}
 		
@@ -28,11 +28,11 @@ public class TicketValidator implements Validator {
 		}
         
         if (ticket.getAmount() <= 0) {
-            errors.rejectValue("amount", "validation.notzero");
+            errors.rejectValue("amount", "validation.notzero", new Object[] {"1"}, null);
         }
         
         if (ticket.getAmount() > 20) {
-        	errors.rejectValue("amount", "amount.validation.toobig");
+        	errors.rejectValue("amount", "amount.validation.toobig", new Object[] {"20"}, null);
         }
 	}
 
