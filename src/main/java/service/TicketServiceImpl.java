@@ -9,6 +9,7 @@ import domain.Ticket;
 import jakarta.transaction.Transactional;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import repository.GameRepository;
 import repository.TicketRepository;
 import repository.UserRepository;
@@ -24,7 +25,7 @@ public class TicketServiceImpl implements TicketService {
     private GameRepository gr;
 	@Autowired
     private UserRepository ur;
-    @Getter
+    @Getter @Setter
     private int amount;
 
 	@Override

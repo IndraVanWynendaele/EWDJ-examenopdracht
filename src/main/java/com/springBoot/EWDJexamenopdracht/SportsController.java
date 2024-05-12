@@ -139,11 +139,12 @@ public class SportsController {
 	
 	@PostMapping(value = "/{sportId}/games/{gameId}/buy")
 	public String buyTickets(@RequestParam("amount") int amount, @PathVariable long sportId, @PathVariable long gameId, @ModelAttribute("ticketService") TicketServiceImpl ticketService, Model model, BindingResult result, Principal principal) {	
-		//		tv.validate(ticketService, result);
-//		
-//		if (result.hasErrors()) {
-//			return "buyTickets";
-//		}
+		ticketService.setAmount(amount);
+		tv.validate(ticketService, result);
+		
+		if (result.hasErrors()) {
+			return "buyTickets";
+		}
 		
 		ts.buyTicket(amount, gameId, ur.findByEmail(principal.getName()).getId());
 		

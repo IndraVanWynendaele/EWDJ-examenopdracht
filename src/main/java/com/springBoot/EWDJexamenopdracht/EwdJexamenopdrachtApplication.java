@@ -18,11 +18,6 @@ import validator.TicketValidator;
 @SpringBootApplication
 @EnableJpaRepositories("repository")
 @EntityScan("domain")
-//@ComponentScans({
-//	@ComponentScan("service"),
-//	@ComponentScan("domain"),
-//	@ComponentScan("repository")
-//})
 public class EwdJexamenopdrachtApplication implements WebMvcConfigurer {
 
 	public static void main(String[] args) {

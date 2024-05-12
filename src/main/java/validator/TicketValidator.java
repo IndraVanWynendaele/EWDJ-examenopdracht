@@ -3,7 +3,6 @@ package validator;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
-import service.TicketService;
 import service.TicketServiceImpl;
 
 public class TicketValidator implements Validator {
@@ -17,7 +16,8 @@ public class TicketValidator implements Validator {
 	public void validate(Object target, Errors errors) {
 		
 		TicketServiceImpl ticketService = (TicketServiceImpl) target;
-        // Validate amount
+        
+		System.out.println("----------------" + ticketService.getAmount() + "----------------");
         if (ticketService.getAmount() <= 0) {
             errors.rejectValue("amount", "negativeOrZero", "Amount must be greater than zero");
         }
