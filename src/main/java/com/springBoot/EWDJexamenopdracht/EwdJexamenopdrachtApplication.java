@@ -10,7 +10,10 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import service.MyUserDetailsService;
+import service.TicketService;
+import service.TicketServiceImpl;
 import validator.GameValidator;
+import validator.TicketValidator;
 
 @SpringBootApplication
 @EnableJpaRepositories("repository")
@@ -44,7 +47,17 @@ public class EwdJexamenopdrachtApplication implements WebMvcConfigurer {
 	}
 	
 	@Bean
+	TicketValidator ticketValidation() {
+		return new TicketValidator();
+	}
+	
+	@Bean
 	UserDetailsService myUserDetailsService() {
 		return new MyUserDetailsService();
+	}
+	
+	@Bean
+	TicketService ticketService() {
+		return new TicketServiceImpl();
 	}
 }
