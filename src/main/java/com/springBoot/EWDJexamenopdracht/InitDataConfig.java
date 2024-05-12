@@ -179,15 +179,19 @@ public class InitDataConfig implements CommandLineRunner {
 		Ticket t1 = new Ticket();
 		t1.setGame(g1);
 		t1.setUser(user);
+		t1.setAmount(2);
 		Ticket t11 = new Ticket();
 		t11.setGame(g17);
 		t11.setUser(user);
+		t11.setAmount(19);
 		Ticket t12 = new Ticket();
 		t12.setGame(g17);
 		t12.setUser(user);
+		t12.setAmount(4);
 		Ticket t13 = new Ticket();
 		t13.setGame(g17);
 		t13.setUser(user2);
+		t13.setAmount(7);
 		
 		user.addTicket(t1);
 		user.addTicket(t11);

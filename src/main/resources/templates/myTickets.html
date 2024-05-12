@@ -20,19 +20,21 @@
                     <th>TIME</th>
                     <th>DISCIPLINE</th>
                     <th>LOCATION</th>
-                    <th class="right_td">PRICE</th>
                     <th class="right_td">AMOUNT</th>
+                    <th class="right_td">PRICE</th>
+                    <th class="right_td">TOTAL PRICE</th>
                 </tr>
             </thead>
             <tbody>
-				<tr th:each="groupedTicket : ${groupedTickets}">
-                    <td th:text="${groupedTicket[0].sport.name}"></td>
-                    <td th:text="${{groupedTicket[0].date}}"></td>
-                    <td th:text="${groupedTicket[0].time}"></td>
-                    <td th:text="${#strings.listJoin(groupedTicket[0].disciplines.![name], ', ')}"></td>
-                    <td th:text="${groupedTicket[0].location.name}"></td>
-                    <td th:text="|€ ${#numbers.formatDecimal(groupedTicket[0].price, 0, 2)}|" class="right_td"></td>
-                    <td th:text="${groupedTicket[1]}" class="right_td"></td>
+				<tr th:each="ticket : ${tickets}">
+                    <td th:text="${ticket.game.sport.name}"></td>
+                    <td th:text="${{ticket.game.date}}"></td>
+                    <td th:text="${ticket.game.time}"></td>
+                    <td th:text="${#strings.listJoin(ticket.game.disciplines.![name], ', ')}"></td>
+                    <td th:text="${ticket.game.location.name}"></td>
+                    <td th:text="${ticket.amount}" class="right_td"></td>
+                    <td th:text="|€ ${#numbers.formatDecimal(ticket.game.price, 0, 2)}|" class="right_td"></td>
+                    <td th:text="|€ ${#numbers.formatDecimal(ticket.game.price * ticket.amount, 0, 2)}|" class="right_td"></td>
                 </tr>
             </tbody>
         </table>

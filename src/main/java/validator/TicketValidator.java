@@ -3,34 +3,37 @@ package validator;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
+import domain.Ticket;
 import service.TicketServiceImpl;
 
 public class TicketValidator implements Validator {
 
 	@Override
 	public boolean supports(Class<?> clazz) {
-		return TicketServiceImpl.class.isAssignableFrom(clazz);
+		return Ticket.class.isAssignableFrom(clazz);
 	}
 
 	@Override
 	public void validate(Object target, Errors errors) {
 		
-		TicketServiceImpl ticketService = (TicketServiceImpl) target;
+		Ticket ticket = (Ticket) target;
 		
-		if (ticketService.getAmount() > ticketService.getGame().getAmountAvailable()) {
-			errors.rejectValue("amount", "amount.validation.notenough");
-		}
-		
-		if (ticketService.getUser().getTickets().size() + ticketService.getAmount() > 100) {
+		if (ticket.getUser().getTickets().size() + ticket.getAmount() > 100) {
 			errors.rejectValue("amount", "amount.validation.toomany");
+			return;
 		}
 		
-		if (ticketService.getAmount() > 20) {
-			errors.rejectValue("amount", "amount.validation.toobig");
+		if (ticket.getAmount() > ticket.getGame().getAmountAvailable()) {
+			errors.rejectValue("amount", "amount.validation.notenough");
+			return;
 		}
         
-        if (ticketService.getAmount() <= 0) {
-            errors.rejectValue("amount", "amount.validation.notnull");
+        if (ticket.getAmount() <= 0) {
+            errors.rejectValue("amount", "validation.notzero");
+        }
+        
+        if (ticket.getAmount() > 20) {
+        	errors.rejectValue("amount", "amount.validation.toobig");
         }
 	}
 

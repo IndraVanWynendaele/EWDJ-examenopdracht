@@ -34,7 +34,7 @@ public class MyTicketsController {
 
 	@GetMapping
 	public String showMyTicketsPage(Model model, Principal principal) {
-	    model.addAttribute("groupedTickets", tr.countTicketsGroupedByGame(ur.findByEmail(principal.getName()).getId()));
+	    model.addAttribute("tickets", tr.findByUserOrderBySportAscDateDesc(ur.findByEmail(principal.getName())));
 		return "myTickets";
 	}	
 }

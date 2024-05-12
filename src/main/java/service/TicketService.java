@@ -1,7 +1,9 @@
 package service;
 
+import domain.Ticket;
+
 public interface TicketService {
 
-	public void buyTicket(int amount, long gameId, long userId);
+	public void buyTicket(Ticket ticket);
 	
 }
