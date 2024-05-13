@@ -41,7 +41,7 @@
                     <td th:text="${game.location.name}"></td>
 					<td th:text="${#strings.listJoin(game.disciplines.![name], ', ')}"></td>
                     <td th:text="${user.role.toString() == 'USER' && game.amountLeft == 0 ? '' : '€ ' + #numbers.formatDecimal(game.price, 0, 2)}" class="right_td">
-                    <td th:text="${game.amountLeft}" class="right_td"></td>
+                    <td th:text="${game.amountLeft == 0 ? 'Sold out' : game.amountLeft}" class="right_td"></td>
                     <td th:if="${user.role.toString() == 'USER'}" class="right_td" >
                     	<span th:each="ticket : ${user.tickets}" th:if="${ticket.game.id == game.id && ticket.amount > 0}">
                     		<span th:text="${ticket.amount}"></span>
