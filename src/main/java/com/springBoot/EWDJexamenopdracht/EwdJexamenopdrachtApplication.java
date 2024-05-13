@@ -9,6 +9,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import service.GameService;
+import service.GameServiceImpl;
 import service.MyUserDetailsService;
 import service.TicketService;
 import service.TicketServiceImpl;
@@ -54,5 +56,10 @@ public class EwdJexamenopdrachtApplication implements WebMvcConfigurer {
 	@Bean
 	TicketService ticketService() {
 		return new TicketServiceImpl();
+	}
+	
+	@Bean 
+	GameService gameService() {
+		return new GameServiceImpl();
 	}
 }

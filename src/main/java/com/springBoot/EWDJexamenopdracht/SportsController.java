@@ -25,6 +25,7 @@ import repository.LocationRepository;
 import repository.SportRepository;
 import repository.TicketRepository;
 import repository.UserRepository;
+import service.GameService;
 import service.TicketService;
 import validator.GameValidator;
 import validator.TicketValidator;
@@ -51,6 +52,8 @@ public class SportsController {
 	private TicketValidator tv;
 	@Autowired
 	private TicketService ts;
+	@Autowired
+	private GameService gs;
 	
     @ModelAttribute("user")
     public MyUser user(Principal principal) {
@@ -112,10 +115,7 @@ public class SportsController {
 			return "newGame";
 		}
 		
-		// TODO miss hier ook serice voor gebruiken ipv heir de 3 stappen te doen?		
-		sport.addGame(game);
-		game.setSport(sport);
-		gr.save(game);
+		gs.addGame(sport, game);
 		
 		return "redirect:/sports/{sportId}/games";
 	}
@@ -124,7 +124,6 @@ public class SportsController {
 	public String showBuyTicketsPage(@PathVariable long sportId, @PathVariable long gameId, Model model, Principal principal) {
 		Optional<Game> optionalGame = gr.findById(gameId);
 		Optional<Sport> optionalSport = sr.findById(sportId);
-		
 	    if (!optionalGame.isPresent() || !optionalSport.isPresent()) {
 	    	model.addAttribute("sportsList", sr.findAll());
 	        return "sportsTable";
@@ -132,11 +131,11 @@ public class SportsController {
 	    
 	    Optional<Ticket> ticketOptional = tr.findByGameAndUser(optionalGame.get(), ur.findByEmail(principal.getName()));
 	    if (ticketOptional.isPresent()) {
-	        Ticket ticket = ticketOptional.get();
-	        model.addAttribute("amountOfTickets", ticket.getAmount());
+	        model.addAttribute("amountOfTickets", ticketOptional.get().getAmount());
 	    } else {
-	        model.addAttribute("amountOfTickets", 0); // or any default value you prefer
+	        model.addAttribute("amountOfTickets", 0);
 	    }
+	    
 	    model.addAttribute("game", optionalGame.get());
 	    model.addAttribute("sport", optionalSport.get());
 	    model.addAttribute("ticket", new Ticket());

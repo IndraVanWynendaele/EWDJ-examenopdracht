@@ -9,7 +9,7 @@
 <body>
 	<header th:include="navbar :: navigation"></header>
     <div class="games_table">
-        <h4 th:if="${user.role.toString() == 'USER' && amountBought != null}" th:text="|&gt; ${amountBought} TICKETS WERE PURCHASED FOR THE ${game.sport.name.toUpperCase()} GAME ON ${game.date} &lt;|"></h4>
+        <h4 th:if="${user.role.toString() == 'USER' && amountBought != null}" th:text="|&gt; ${amountBought} TICKETS WERE PURCHASED FOR THE ${game.sport.name.toUpperCase()} GAME ON ${{game.date}} &lt;|"></h4>
         <table>
             <div class="add_game_btn">
                 <h2 th:text="|${sport.name} - Games|"></h2>
