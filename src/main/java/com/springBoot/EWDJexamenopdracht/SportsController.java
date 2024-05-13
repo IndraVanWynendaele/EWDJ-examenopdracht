@@ -78,6 +78,7 @@ public class SportsController {
 			return "sportsTable";
 		}
 		
+		model.addAttribute("pageTitleText", messageSource.getMessage("text.title", null, locale));
 		model.addAttribute("buttonBackText", messageSource.getMessage("text.back.button", null, locale));
 		model.addAttribute("titleText", messageSource.getMessage("text.games.title", null, locale));
 		model.addAttribute("tableHeadDateText", messageSource.getMessage("text.games.tablehead.date", null, locale));
@@ -87,6 +88,7 @@ public class SportsController {
 		model.addAttribute("tableHeadPriceText", messageSource.getMessage("text.games.tablehead.price", null, locale));
 		model.addAttribute("tableHeadAvailableText", messageSource.getMessage("text.games.tablehead.available", null, locale));
 		model.addAttribute("tableHeadBoughtText", messageSource.getMessage("text.games.tablehead.bought", null, locale));
+		model.addAttribute("buttonBuyText", messageSource.getMessage("text.buyTicket.button", null, locale));
 		model.addAttribute("buttonAddGameText", messageSource.getMessage("text.addGame.button", null, locale));
 		
 		model.addAttribute("sport", optionalSport.get());

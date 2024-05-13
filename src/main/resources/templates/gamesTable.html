@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8">
-	<title>Games</title>
+	<title th:text="${pageTitleText}"></title>
 	<link rel="stylesheet" th:href="@{/css/gamesTable.css}">
 	<link rel="icon" type="image/x-icon" href="/images/paris-favicon.ico">
 </head>
@@ -33,7 +33,7 @@
                 <tr th:each="game: ${games}">
                     <td th:if="${user.role.toString() == 'USER'}">
                     	<a th:href="|/sports/${sport.id}/games/${game.id}/buy|">
-                        	<button class="hover">BUY</button>
+                        	<button th:text="${buttonBuyText}" class="hover"></button>
                         </a>
                     </td>
                     <td th:text="${{game.date}}"></td>
