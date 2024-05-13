@@ -12,21 +12,21 @@
         <h4 th:if="${user.role.toString() == 'USER' && amountBought != null}" th:text="|&gt; ${amountBought} TICKETS WERE PURCHASED FOR THE ${game.sport.name.toUpperCase()} GAME ON ${{game.date}} &lt;|"></h4>
         <table>
             <div class="add_game_btn">
-                <h2 th:text="|${sport.name} - Games|"></h2>
+                <h2 th:text="|${sport.name} ${titleText}|"></h2>
                 <a th:if="${user.role.toString() == 'ADMIN'}" th:href="|/sports/${sport.id}/games/add|">
-                	<button>ADD NEW GAME &gt;</button>
+                	<button th:text="${buttonAddGameText}"></button>
                 </a>
             </div>
             <thead>
                 <tr>
                     <th th:if="${user.role.toString() == 'USER'}"></th>
-                    <th>DATE</th>
-                    <th>TIME</th>
-                    <th>LOCATION</th>
-                    <th>DISCIPLINE</th>
-                    <th class="right_td">PRICE</th>
-                    <th class="right_td"># AVAILABLE</th>
-                    <th th:if="${user.role.toString() == 'USER'}" class="right_td"># BOUGHT</th>
+                    <th th:text="${tableHeadDateText}"></th>
+                    <th th:text="${tableHeadTimeText}"></th>
+                    <th th:text="${tableHeadLocationText}"></th>
+                    <th th:text="${tableHeadDisciplineText}"></th>
+                    <th th:text="${tableHeadPriceText}" class="right_td"></th>
+                    <th th:text="${tableHeadAvailableText}" class="right_td"></th>
+                    <th th:if="${user.role.toString() == 'USER'}" th:text="${tableHeadBoughtText}" class="right_td"></th>
                 </tr>
             </thead>
             <tbody>
@@ -52,8 +52,7 @@
         </table>
         <div class="games_table_bottom">
         	<a href="/sports">
-	            <button>
-	                &lt; BACK </button>
+	            <button th:text="${buttonBackText}"></button>
 	        </a>
         </div>
     </div>
