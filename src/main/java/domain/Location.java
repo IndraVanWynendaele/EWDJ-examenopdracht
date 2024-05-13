@@ -28,9 +28,7 @@ public class Location implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	@NotBlank
-	@NotEmpty
-	@NotNull
+	@NotBlank(message = "{validation.null}")
 	private String name;
 	
 	@OneToMany(mappedBy = "location")

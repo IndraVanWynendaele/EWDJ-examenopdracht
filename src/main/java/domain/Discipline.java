@@ -30,9 +30,7 @@ public class Discipline implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	@NotBlank
-	@NotEmpty
-	@NotNull
+	@NotBlank(message = "{validation.null}")
 	private String name;
 
 	@ManyToMany(mappedBy = "disciplines")

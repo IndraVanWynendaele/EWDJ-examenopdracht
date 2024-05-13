@@ -27,9 +27,7 @@ public class Sport implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 	
-	@NotNull
-	@NotBlank
-	@NotEmpty
+	@NotBlank(message = "{validation.null}")
 	private String name;
 	
 	@OneToMany(mappedBy = "sport")

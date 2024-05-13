@@ -28,7 +28,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-@EqualsAndHashCode(exclude = "id")
 public class Game implements Serializable {
 
 	private static final long serialVersionUID = 1L;
