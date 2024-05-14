@@ -33,12 +33,11 @@ public class SecurityConfig {
 					.requestMatchers("/fonts/**").permitAll()
 					.requestMatchers("/images/**").permitAll()
 					.requestMatchers("/403**").permitAll()
-					.requestMatchers("/*").hasAnyRole("USER", "ADMIN")
-					.requestMatchers("/sports/").hasAnyRole("USER", "ADMIN")
-					.requestMatchers("/sports/*/games").hasAnyRole("USER", "ADMIN")
+					
 					.requestMatchers("/sports/*/games/add").hasAnyRole("ADMIN")
 					.requestMatchers("/myTickets**").hasAnyRole("USER")
-					.requestMatchers("/sports/*/games/*/buy").hasAnyRole("USER"))
+					.requestMatchers("/sports/*/games/*/buy").hasAnyRole("USER")
+					.requestMatchers("/sports/**").hasAnyRole("USER", "ADMIN"))
 			.formLogin(form ->
 					form.defaultSuccessUrl("/sports", true)
 						.loginPage("/login")

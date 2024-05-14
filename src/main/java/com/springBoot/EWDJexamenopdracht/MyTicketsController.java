@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import domain.MyUser;
+import domain.Role;
 import repository.TicketRepository;
 import repository.UserRepository;
 
@@ -26,6 +27,16 @@ public class MyTicketsController {
 	@ModelAttribute("user")
     public MyUser user(Principal principal) {
         return ur.findByEmail(principal.getName());
+    }
+	
+	@ModelAttribute("email")
+    public String email(Principal principal) {
+    	return ur.findByEmail(principal.getName()).getEmail();
+    }
+    
+    @ModelAttribute("role")
+    public Role role(Principal principal) {
+    	return ur.findByEmail(principal.getName()).getRole();
     }
 
 	@GetMapping
