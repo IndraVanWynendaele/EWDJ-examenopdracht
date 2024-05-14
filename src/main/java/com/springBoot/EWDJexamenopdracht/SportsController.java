@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -132,7 +133,12 @@ public class SportsController {
 			return "newGame";
 		}
 		
-		gs.addGame(sport, game);
+		try {
+			gs.addGame(sport, game);
+		} catch (DataIntegrityViolationException ex) {
+			result.rejectValue("olympicNrOne", "validation.olympicNrOne.duplicate");
+			return "newGame";
+		}
 		
 		return "redirect:/sports/{sportId}/games";
 	}
@@ -160,7 +166,7 @@ public class SportsController {
 	}
 	
 	@PostMapping(value = "/{sportId}/games/{gameId}/buy")
-	public String buyTickets(@PathVariable long sportId, @PathVariable long gameId, @Valid Ticket ticket, Model model, BindingResult result, Principal principal, RedirectAttributes redirectAttributes) {	
+	public String buyTickets(@PathVariable long sportId, @PathVariable long gameId, @Valid Ticket ticket, Model model, BindingResult result, Principal principal, RedirectAttributes redirectAttributes, Locale locale) {	
 		Optional<Game> optionalGame = gr.findById(gameId);
 		Optional<Sport> optionalSport = sr.findById(sportId);
 		
@@ -184,8 +190,13 @@ public class SportsController {
 		
 		ts.buyTicket(ticket, game, user);
 		
-		redirectAttributes.addFlashAttribute("amountBought", ticket.getAmount());
-		redirectAttributes.addFlashAttribute("game", ticket.getGame());
+		String ticketsBought = messageSource.getMessage("ticket.amountBought",
+				new Object[]{
+						ticket.getAmount(),
+        				game.getSport().getName().toUpperCase(),
+        				game.getDate()},
+        				locale);
+		redirectAttributes.addFlashAttribute("ticketsBought", ticketsBought);
 		
 		return "redirect:/sports/{sportId}/games";
 	}
