@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8">
-	<title th:text="${pageTitleText}"></title>
+	<title th:text="#{text.title}"></title>
 	<link rel="stylesheet" th:href="@{/css/gamesTable.css}">
 	<link rel="icon" type="image/x-icon" href="/images/paris-favicon.ico">
 </head>
@@ -12,28 +12,28 @@
 		<h4 th:if="${user.role.toString() == 'USER' && ticketsBought != null}" th:text="${ticketsBought}"></h4>       
  		<table>
             <div class="add_game_btn">
-                <h2 th:text="|${sport.name} ${titleText}|"></h2>
+                <h2 th:text="|${sport.name} #{text.games.title}|"></h2>
                 <a th:if="${user.role.toString() == 'ADMIN'}" th:href="|/sports/${sport.id}/games/add|">
-                	<button th:text="${buttonAddGameText}"></button>
+                	<button th:text="#{text.addGame.button}"></button>
                 </a>
             </div>
             <thead>
                 <tr>
                     <th th:if="${user.role.toString() == 'USER'}"></th>
-                    <th th:text="${tableHeadDateText}"></th>
-                    <th th:text="${tableHeadTimeText}"></th>
-                    <th th:text="${tableHeadLocationText}"></th>
-                    <th th:text="${tableHeadDisciplineText}"></th>
-                    <th th:text="${tableHeadPriceText}" class="right_td"></th>
-                    <th th:text="${tableHeadAvailableText}" class="right_td"></th>
-                    <th th:if="${user.role.toString() == 'USER'}" th:text="${tableHeadBoughtText}" class="right_td"></th>
+                    <th th:text="#{text.games.tablehead.date}"></th>
+                    <th th:text="#{text.games.tablehead.time}"></th>
+                    <th th:text="#{text.games.tablehead.location}"></th>
+                    <th th:text="#{text.games.tablehead.discipline}"></th>
+                    <th th:text="#{text.games.tablehead.price}" class="right_td"></th>
+                    <th th:text="#{text.games.tablehead.available}" class="right_td"></th>
+                    <th th:if="${user.role.toString() == 'USER'}" th:text="#{text.games.tablehead.bought}" class="right_td"></th>
                 </tr>
             </thead>
             <tbody>
                 <tr th:each="game: ${games}">
                     <td th:if="${user.role.toString() == 'USER'}">
                     	<a th:href="|/sports/${sport.id}/games/${game.id}/buy|">
-                        	<button th:text="${buttonBuyText}" class="hover"></button>
+                        	<button th:text="#{text.buyTicket.button}" class="hover"></button>
                         </a>
                     </td>
                     <td th:text="${{game.date}}"></td>
@@ -52,7 +52,7 @@
         </table>
         <div class="games_table_bottom">
         	<a href="/sports">
-	            <button th:text="${buttonBackText}"></button>
+	            <button th:text="#{text.back.button}"></button>
 	        </a>
         </div>
     </div>

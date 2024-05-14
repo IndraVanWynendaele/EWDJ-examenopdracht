@@ -19,6 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import domain.Game;
 import domain.MyUser;
+import domain.Role;
 import domain.Sport;
 import domain.Ticket;
 import jakarta.validation.Valid;
@@ -65,6 +66,16 @@ public class SportsController {
         return ur.findByEmail(principal.getName());
     }
     
+    @ModelAttribute("email")
+    public String email(Principal principal) {
+    	return ur.findByEmail(principal.getName()).getEmail();
+    }
+    
+    @ModelAttribute("role")
+    public Role role(Principal principal) {
+    	return ur.findByEmail(principal.getName()).getRole();
+    }
+    
 	@GetMapping
 	public String showSportsPage(Model model, Principal principal) {
 		model.addAttribute("sportsList", sr.findAll());
@@ -78,19 +89,6 @@ public class SportsController {
 			model.addAttribute("sportsList", sr.findAll());
 			return "sportsTable";
 		}
-		
-		model.addAttribute("pageTitleText", messageSource.getMessage("text.title", null, locale));
-		model.addAttribute("buttonBackText", messageSource.getMessage("text.back.button", null, locale));
-		model.addAttribute("titleText", messageSource.getMessage("text.games.title", null, locale));
-		model.addAttribute("tableHeadDateText", messageSource.getMessage("text.games.tablehead.date", null, locale));
-		model.addAttribute("tableHeadTimeText", messageSource.getMessage("text.games.tablehead.time", null, locale));
-		model.addAttribute("tableHeadLocationText", messageSource.getMessage("text.games.tablehead.location", null, locale));
-		model.addAttribute("tableHeadDisciplineText", messageSource.getMessage("text.games.tablehead.discipline", null, locale));
-		model.addAttribute("tableHeadPriceText", messageSource.getMessage("text.games.tablehead.price", null, locale));
-		model.addAttribute("tableHeadAvailableText", messageSource.getMessage("text.games.tablehead.available", null, locale));
-		model.addAttribute("tableHeadBoughtText", messageSource.getMessage("text.games.tablehead.bought", null, locale));
-		model.addAttribute("buttonBuyText", messageSource.getMessage("text.buyTicket.button", null, locale));
-		model.addAttribute("buttonAddGameText", messageSource.getMessage("text.addGame.button", null, locale));
 		
 		model.addAttribute("sport", optionalSport.get());
 		model.addAttribute("games", gr.findBySportOrderByDateAscTimeAsc(optionalSport.get()));

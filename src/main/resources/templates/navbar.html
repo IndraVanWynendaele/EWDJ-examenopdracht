@@ -8,8 +8,8 @@
 <body>
 	<header th:fragment="navigation">
         <img src="/images/flame.png" alt="logo">
-        <p th:text="${user.role.toString()}"></p>
-        <p th:text="${user.email}"></p>
+        <p th:text="${role}"></p>
+        <p th:text="${email}"></p>
         <form th:action="@{/logout}" method="post">
 				<input type="submit" value="Logout" />
 				<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
