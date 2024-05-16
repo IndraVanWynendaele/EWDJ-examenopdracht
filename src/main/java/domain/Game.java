@@ -8,6 +8,10 @@ import java.util.List;
 
 import org.hibernate.validator.constraints.Range;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -28,12 +32,14 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
+@JsonPropertyOrder({"game_id", "date", "time", "price", "amount_available", "amount_left", "olympic_nr_one", "olympic_nr_two"})
 public class Game implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonProperty("game_id")
 	private long id;
 
 	@NotNull(message = "{validation.null}")
@@ -49,28 +55,37 @@ public class Game implements Serializable {
 
 	@NotNull(message = "{validation.null}")
 	@Range(min = 1, max = 49, message = "{amountAvailable.validation.range}")
+	@JsonProperty("amount_available")
 	private int amountAvailable;
 	
+	@Range(min = 0, max = 49, message = "{amountAvailable.validation.range}")
+	@JsonProperty("amount_left")
 	private int amountLeft;
 	
 	@NotNull(message = "{validation.null}")
 	@Column(unique = true)
+	@JsonProperty("olympic_nr_one")
 	private int olympicNrOne;
 	
 	@NotNull(message = "{validation.null}")
+	@JsonProperty("olympic_nr_two")
 	private int olympicNrTwo;
 	
 	@ManyToOne
+	@JsonIgnore
 	private Sport sport;
 	
 	@NotNull(message = "{validation.null}")
 	@ManyToOne
+	@JsonIgnore
 	private Location location;
 	
 	@OneToMany(mappedBy = "game")
+	@JsonIgnore
 	List<Ticket> tickets = new ArrayList<>();
 	
 	@ManyToMany
+	@JsonIgnore
 	List<Discipline> disciplines = new ArrayList<>();
 
 	public Game(LocalDate date, LocalTime time, double price,

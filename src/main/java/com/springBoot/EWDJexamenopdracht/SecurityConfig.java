@@ -33,7 +33,7 @@ public class SecurityConfig {
 					.requestMatchers("/fonts/**").permitAll()
 					.requestMatchers("/images/**").permitAll()
 					.requestMatchers("/403**").permitAll()
-					
+					.requestMatchers("/rest/**").permitAll()
 					.requestMatchers("/sports/*/games/add").hasAnyRole("ADMIN")
 					.requestMatchers("/myTickets**").hasAnyRole("USER")
 					.requestMatchers("/sports/*/games/*/buy").hasAnyRole("USER")
