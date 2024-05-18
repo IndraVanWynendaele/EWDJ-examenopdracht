@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import perform.PerformRest;
 import service.GameService;
 import service.GameServiceImpl;
 import service.MyUserDetailsService;
@@ -24,6 +25,12 @@ public class EwdJexamenopdrachtApplication implements WebMvcConfigurer {
 
 	public static void main(String[] args) {
 		SpringApplication.run(EwdJexamenopdrachtApplication.class, args);
+		
+		try {
+			new PerformRest();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	

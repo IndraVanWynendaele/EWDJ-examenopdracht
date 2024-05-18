@@ -1,6 +1,8 @@
 package com.springBoot.EWDJexamenopdracht;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,5 +51,16 @@ public class SportsRestController {
 			throw new GameNotFoundException(gameId);
 		}
 	}	
+	
+	@GetMapping("/sports/{sportId}/games")
+	public List<Game> getGamesBySport(@PathVariable("sportId") long sportId) {
+		List<Game> games = new ArrayList<>();
+		try {
+			games = gr.findBySportOrderByDateAscTimeAsc(sr.findById(sportId).get());
+		} catch (NoSuchElementException ex) {
+			throw new SportNotFoundException(sportId);
+		}
+		return games;
+	}
 	
 }
