@@ -27,21 +27,6 @@ public class SportsRestController {
 	@Autowired
 	private GameRepository gr;
 	
-	@GetMapping("/sports")
-	public List<Sport> getSports() {
-		return sr.findAll();
-	}
-
-	@GetMapping("/sports/{sportId}")
-	public Sport getSportById(@PathVariable("sportId") long sportId) {
-		Optional<Sport> s = sr.findById(sportId);
-		if (s.isPresent()) {
-			return s.get();
-		} else {
-			throw new SportNotFoundException(sportId);
-		}
-	}
-	
 	@GetMapping("/sports/{sportId}/games/{gameId}/available")
 	public int getAvailableTicketsForGame(@PathVariable("sportId") long sportId, @PathVariable("gameId") long gameId) {
 		Optional<Game> g = gr.findById(gameId);

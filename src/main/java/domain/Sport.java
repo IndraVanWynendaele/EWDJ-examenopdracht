@@ -20,9 +20,11 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Getter
+@Setter
 @NoArgsConstructor
 @JsonPropertyOrder({"sport_id", "sport_name"})
 public class Sport implements Serializable {
@@ -38,7 +40,7 @@ public class Sport implements Serializable {
 	@JsonProperty("sport_name")
 	private String name;
 	
-	@OneToMany(mappedBy = "sport")
+	@OneToMany(mappedBy = "sport", fetch = FetchType.EAGER)
 	@JsonIgnore
 	private List<Game> games = new ArrayList<>();
 	

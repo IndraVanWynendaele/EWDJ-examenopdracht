@@ -11,8 +11,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -22,12 +23,17 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
 import domain.Discipline;
+import domain.Game;
 import domain.Location;
+import domain.MyUser;
+import domain.Role;
 import domain.Sport;
+import domain.Ticket;
 import repository.DisciplineRepository;
 import repository.GameRepository;
 import repository.LocationRepository;
 import repository.SportRepository;
+import repository.UserRepository;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -43,6 +49,8 @@ class SportsControllerTest {
 	private SportRepository sr;
 	@Autowired
 	private DisciplineRepository dr;
+	@Autowired
+	private UserRepository ur;
 	
 	private static final LocalDate DATE = LocalDate.of(2024, 8, 2);
 	private static final LocalTime TIME = LocalTime.of(13, 13);
@@ -54,6 +62,7 @@ class SportsControllerTest {
 	private static final int OLYMPIC_NR_TWO = 22336;
 	private Sport sport;
 	private Location location;
+	private Game game;
 	private Discipline d1;
 	private Discipline d2;
 	private Discipline d3;
@@ -64,6 +73,7 @@ class SportsControllerTest {
 		d1 = sport.getDisciplines().get(0);
 	    d2 = sport.getDisciplines().get(1);
 	    d3 = sport.getDisciplines().get(2);
+	    game = sport.getGames().getFirst();
 	}
 
 	// GET sports
@@ -148,7 +158,55 @@ class SportsControllerTest {
 	}
 	
 	// BUY tickets
+	@WithMockUser(username = "user@javaweb.com", roles = {"USER"})
+	@Test
+	public void testBuyTicketsSuccess() throws Exception {
+		init();
+		MvcResult res = mockMvc.perform(post("/sports/" + SPORT_ID + "/games/" + GAME_ID + "/buy")
+				.with(csrf())
+				.param("amount", String.valueOf(game.getAmountLeft())))
+				.andReturn();
+		assertEquals("/sports/" + SPORT_ID + "/games", res.getResponse().getRedirectedUrl());
+	}
 	
+	@WithMockUser(username = "user@javaweb.com", roles = {"USER"})
+	@Test
+	public void testBuyTicketsNotEnoughLeft() throws Exception {
+		init();
+		MvcResult res = mockMvc.perform(post("/sports/" + SPORT_ID + "/games/" + GAME_ID + "/buy")
+				.with(csrf())
+				.param("amount", String.valueOf(game.getAmountLeft() + 1)))
+				.andReturn();
+		assertTrue(res.getResponse().getContentAsString().contains("There are not enough tickets available"));
+	}
+	
+	// TODO fix
+	@WithMockUser(username = "user@javaweb.com", roles = {"USER"})
+	@Test
+	public void testBuyTicketsMoreThanTwenty() throws Exception {
+		init();
+		MvcResult res = mockMvc.perform(post("/sports/" + SPORT_ID + "/games/" + GAME_ID + "/buy")
+				.with(csrf())
+				.param("amount", String.valueOf(21)))
+				.andReturn();
+		assertTrue(res.getResponse().getContentAsString().contains("You cannot purchase more than 20 tickets at once"));
+	}
+	
+	// TODO fix
+	@WithMockUser(username = "user@javaweb.com", roles = {"USER"})
+	@Test
+	public void testBuyTicketsMoreThanHundredInAccount() throws Exception {
+		init();
+		MyUser user = ur.findByEmail("user@javaweb.com");
+		for (int i = 0; i < 100 - user.getTickets().size(); i++) {
+			 user.addTicket(new Ticket());
+		}
+		MvcResult res = mockMvc.perform(post("/sports/" + SPORT_ID + "/games/" + GAME_ID + "/buy")
+				.with(csrf())
+				.param("amount", String.valueOf(1)))
+				.andReturn();
+		assertTrue(res.getResponse().getContentAsString().contains("You can only have 100 tickets in your account"));
+	}
 	
 	// GET ADD game
 	@WithMockUser(username = "user@javaweb.com", roles = {"USER"})
