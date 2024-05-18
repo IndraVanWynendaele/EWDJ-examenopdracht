@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -41,7 +42,7 @@ public class Sport implements Serializable {
 	@JsonIgnore
 	private List<Game> games = new ArrayList<>();
 	
-	@OneToMany(mappedBy = "sport")
+	@OneToMany(mappedBy = "sport", fetch = FetchType.EAGER)
 	@JsonIgnore
 	private List<Discipline> disciplines = new ArrayList<>();
 	
