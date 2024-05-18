@@ -9,8 +9,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import domain.Game;
 import domain.Sport;
-import jakarta.persistence.EntityNotFoundException;
+import exceptions.GameNotFoundException;
+import exceptions.SportNotFoundException;
+import repository.GameRepository;
 import repository.SportRepository;
 
 @RestController
@@ -19,20 +22,32 @@ public class SportsRestController {
 	
 	@Autowired
 	private SportRepository sr;
+	@Autowired
+	private GameRepository gr;
 	
 	@GetMapping("/sports")
 	public List<Sport> getSports() {
 		return sr.findAll();
 	}
 
-	@GetMapping("/sports/{id}")
-	public Sport getSportById(@PathVariable("id") long id) {
-		Optional<Sport> s = sr.findById(id);
+	@GetMapping("/sports/{sportId}")
+	public Sport getSportById(@PathVariable("sportId") long sportId) {
+		Optional<Sport> s = sr.findById(sportId);
 		if (s.isPresent()) {
 			return s.get();
 		} else {
-			throw new EntityNotFoundException();
+			throw new SportNotFoundException(sportId);
 		}
 	}
+	
+	@GetMapping("/sports/{sportId}/games/{gameId}/available")
+	public int getAvailableTicketsForGame(@PathVariable("sportId") long sportId, @PathVariable("gameId") long gameId) {
+		Optional<Game> g = gr.findById(gameId);
+		if (g.isPresent()) {
+			return g.get().getAmountLeft();
+		} else {
+			throw new GameNotFoundException(gameId);
+		}
+	}	
 	
 }
