@@ -32,7 +32,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-@JsonPropertyOrder({"game_id", "date", "time", "price", "amount_available", "amount_left", "olympic_nr_one", "olympic_nr_two"})
+@JsonPropertyOrder({"game_id", "date", "time", "price", "amount_available", "amount_left", "olympic_nr_one", "olympic_nr_two", "sport", "location"})
 public class Game implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -74,12 +74,12 @@ public class Game implements Serializable {
 	private int olympicNrTwo;
 	
 	@ManyToOne
-	@JsonIgnore
+//	@JsonIgnore
 	private Sport sport;
 	
 	@NotNull(message = "{validation.null}")
 	@ManyToOne
-	@JsonIgnore
+//	@JsonIgnore
 	private Location location;
 	
 	@OneToMany(mappedBy = "game")

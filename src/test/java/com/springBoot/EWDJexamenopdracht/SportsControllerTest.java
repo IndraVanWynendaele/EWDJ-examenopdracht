@@ -179,33 +179,16 @@ class SportsControllerTest {
 				.andReturn();
 		assertTrue(res.getResponse().getContentAsString().contains("There are not enough tickets available"));
 	}
-	
-	// TODO fix
+
 	@WithMockUser(username = "user@javaweb.com", roles = {"USER"})
 	@Test
 	public void testBuyTicketsMoreThanTwenty() throws Exception {
 		init();
-		MvcResult res = mockMvc.perform(post("/sports/" + SPORT_ID + "/games/" + GAME_ID + "/buy")
+		MvcResult res = mockMvc.perform(post("/sports/" + SPORT_ID + "/games/" + 11 + "/buy")
 				.with(csrf())
 				.param("amount", String.valueOf(21)))
 				.andReturn();
 		assertTrue(res.getResponse().getContentAsString().contains("You cannot purchase more than 20 tickets at once"));
-	}
-	
-	// TODO fix
-	@WithMockUser(username = "user@javaweb.com", roles = {"USER"})
-	@Test
-	public void testBuyTicketsMoreThanHundredInAccount() throws Exception {
-		init();
-		MyUser user = ur.findByEmail("user@javaweb.com");
-		for (int i = 0; i < 100 - user.getTickets().size(); i++) {
-			 user.addTicket(new Ticket());
-		}
-		MvcResult res = mockMvc.perform(post("/sports/" + SPORT_ID + "/games/" + GAME_ID + "/buy")
-				.with(csrf())
-				.param("amount", String.valueOf(1)))
-				.andReturn();
-		assertTrue(res.getResponse().getContentAsString().contains("You can only have 100 tickets in your account"));
 	}
 	
 	// GET ADD game

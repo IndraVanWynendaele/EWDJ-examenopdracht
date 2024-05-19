@@ -3,6 +3,7 @@ package perform;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import domain.Game;
+import dto.GameDTO;
 import reactor.core.publisher.Mono;
 
 public class PerformRest {
@@ -20,7 +21,7 @@ public class PerformRest {
 
 	private void getTicketsLeft(long sportId, long gameId) {
 		String uri = SERVER_URI + "/sports/" + sportId + "/games/" + gameId + "/available";
-		webClient.get().uri(uri).retrieve().bodyToFlux(int.class).doOnNext(this::printAmount).blockLast();
+		webClient.get().uri(uri).retrieve().bodyToFlux(GameDTO.class).doOnNext(this::printAmount).blockLast();
 	}
 	
 	private void getGamesBySport(long sportId) {
@@ -35,16 +36,22 @@ public class PerformRest {
 		if (game != null) {
 			System.out.printf("ID = %d, date = %s, time = %s, price = %.2f, "
 					+ "amount of tickets available = %d, amount of tickets left = %d, "
-					+ "olympic number one = %d, olympic number two = %d%n",
+					+ "olympic number one = %d, olympic number two = %d"
+					+ "sport = %s, location = %s%n",
 					game.getId(), game.getDate().toString(), game.getTime().toString(), 
 					game.getPrice(), game.getAmountAvailable(), game.getAmountLeft(),
-					game.getOlympicNrOne(), game.getOlympicNrTwo());
+					game.getOlympicNrOne(), game.getOlympicNrTwo(), game.getSport().getName(), game.getLocation().getName());
 		} else {
 			System.out.println("Game is null");
 		}
 	}
 
-	private void printAmount(int amount) {
-		System.out.printf("amount of tickets left: %d%n", amount);
+	private void printAmount(GameDTO dto) {
+		if (dto != null) {
+			System.out.printf("ID = %d, amount of tickets left = %d%n", dto.id(), dto.amountLeft());
+		} else {
+			System.out.println("Game is null");
+		}
+		
 	}
 }

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import domain.Game;
-import domain.Sport;
+import dto.GameDTO;
 import exceptions.GameNotFoundException;
 import exceptions.SportNotFoundException;
 import repository.GameRepository;
@@ -28,13 +28,13 @@ public class SportsRestController {
 	private GameRepository gr;
 	
 	@GetMapping("/sports/{sportId}/games/{gameId}/available")
-	public int getAvailableTicketsForGame(@PathVariable("sportId") long sportId, @PathVariable("gameId") long gameId) {
-		Optional<Game> g = gr.findById(gameId);
-		if (g.isPresent()) {
-			return g.get().getAmountLeft();
-		} else {
+	public GameDTO getAvailableTicketsForGame(@PathVariable("sportId") long sportId, @PathVariable("gameId") long gameId) {
+		Optional<Game> gOptional = gr.findById(gameId);
+		if (!gOptional.isPresent()) {
 			throw new GameNotFoundException(gameId);
-		}
+		} 
+		Game g = gOptional.get();
+		return new GameDTO(g.getId(), g.getAmountLeft());
 	}	
 	
 	@GetMapping("/sports/{sportId}/games")

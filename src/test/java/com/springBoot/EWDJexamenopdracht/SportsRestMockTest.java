@@ -23,6 +23,7 @@ import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.test.web.servlet.MockMvc;
 
 import domain.Game;
+import domain.Location;
 import domain.Sport;
 import exceptions.GameNotFoundException;
 import repository.GameRepository;
@@ -40,6 +41,7 @@ class SportsRestMockTest {
 	private SportsRestController controller;
 	private MockMvc mockMvc;
 	private Sport sport;
+	private Location location;
 	
 	private static final long SPORT_ID = 1;
 	private static final long GAME_ID = 1;
@@ -65,9 +67,10 @@ class SportsRestMockTest {
 		Mockito.when(mockSport.findAll()).thenReturn(List.of(mockSportInstance));
 		Mockito.when(mockSport.findById(SPORT_ID)).thenReturn(Optional.of(mockSportInstance));
 		sport = mockSport.findAll().get(0);
+		sport.setName("test");
+		location = new Location("test");
 	}
 	
-	// TODO fix
 	@Test
 	public void testGetAmountOfSeatsLeft() throws Exception {
 		Game game = new Game();
@@ -76,7 +79,7 @@ class SportsRestMockTest {
 		Mockito.when(mockGame.findById(GAME_ID)).thenReturn(Optional.of(game));
 		mockMvc.perform(get("/rest/sports/{sportId}/games/{gameId}/available", SPORT_ID, GAME_ID))
 		        .andExpect(status().isOk())
-		        .andExpect(jsonPath("$.amount_left").value(AMOUNT_LEFT));
+		        .andExpect(jsonPath("$.amountLeft").value(AMOUNT_LEFT));
 		
 		Mockito.verify(mockGame).findById(GAME_ID);
 	}
@@ -110,7 +113,11 @@ class SportsRestMockTest {
 	@Test
 	public void testGetAllGamesBySort_noEmptyList() throws Exception {
 		Game g1  =aGame(DATE, TIME, PRICE, AMOUNT_AVAILABLE, OLYMPIC_NR_ONE, OLYMPIC_NR_TWO);
+		g1.setSport(sport);
+		g1.setLocation(location);
 		Game g2  =aGame(DATE, TIME, PRICE, AMOUNT_AVAILABLE, OLYMPIC_NR_ONE + 1, OLYMPIC_NR_TWO);
+		g2.setSport(sport);
+		g2.setLocation(location);
 		List<Game> games = List.of(g1, g2);
 		
 		Mockito.when(mockGame.findBySportOrderByDateAscTimeAsc(sport))
@@ -127,13 +134,15 @@ class SportsRestMockTest {
 				.andExpect(jsonPath("$[0].amount_left").value(AMOUNT_AVAILABLE))
 				.andExpect(jsonPath("$[0].olympic_nr_one").value(OLYMPIC_NR_ONE))
 				.andExpect(jsonPath("$[0].olympic_nr_two").value(OLYMPIC_NR_TWO))
+				.andExpect(jsonPath("$[0].sport.sport_name").value("test"))
 				.andExpect(jsonPath("$[1].date").value(DATE.toString()))
 				.andExpect(jsonPath("$[1].time").value(TIME.toString()))
 				.andExpect(jsonPath("$[1].price").value(PRICE))
 				.andExpect(jsonPath("$[1].amount_available").value(AMOUNT_AVAILABLE))
 				.andExpect(jsonPath("$[1].amount_left").value(AMOUNT_AVAILABLE))
 				.andExpect(jsonPath("$[1].olympic_nr_one").value(OLYMPIC_NR_ONE + 1))
-				.andExpect(jsonPath("$[1].olympic_nr_two").value(OLYMPIC_NR_TWO));
+				.andExpect(jsonPath("$[1].olympic_nr_two").value(OLYMPIC_NR_TWO))
+				.andExpect(jsonPath("$[1].sport.sport_name").value("test"));
 		
 		Mockito.verify(mockGame).findBySportOrderByDateAscTimeAsc(sport);
 	}
