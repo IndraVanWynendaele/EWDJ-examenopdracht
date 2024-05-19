@@ -3,7 +3,6 @@ package validator;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 

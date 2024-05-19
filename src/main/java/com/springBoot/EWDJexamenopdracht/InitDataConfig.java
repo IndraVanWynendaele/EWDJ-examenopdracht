@@ -1,4 +1,4 @@
-	package com.springBoot.EWDJexamenopdracht;
+package com.springBoot.EWDJexamenopdracht;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -20,7 +20,6 @@ import repository.DisciplineRepository;
 import repository.GameRepository;
 import repository.LocationRepository;
 import repository.SportRepository;
-import repository.TicketRepository;
 import repository.UserRepository;
 import service.TicketService;
 
@@ -39,8 +38,6 @@ public class InitDataConfig implements CommandLineRunner {
 	private DisciplineRepository dr;
 	@Autowired
 	private UserRepository ur;
-	@Autowired 
-	private TicketRepository tr;
 	@Autowired
 	private TicketService ts;
 	

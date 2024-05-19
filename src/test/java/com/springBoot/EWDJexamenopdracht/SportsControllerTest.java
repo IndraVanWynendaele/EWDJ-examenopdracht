@@ -11,8 +11,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,15 +23,9 @@ import org.springframework.test.web.servlet.MvcResult;
 import domain.Discipline;
 import domain.Game;
 import domain.Location;
-import domain.MyUser;
-import domain.Role;
 import domain.Sport;
-import domain.Ticket;
-import repository.DisciplineRepository;
-import repository.GameRepository;
 import repository.LocationRepository;
 import repository.SportRepository;
-import repository.UserRepository;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -42,15 +34,9 @@ class SportsControllerTest {
 	@Autowired
 	private MockMvc mockMvc;
 	@Autowired
-	private GameRepository gr;
-	@Autowired
 	private LocationRepository lr;
 	@Autowired
 	private SportRepository sr;
-	@Autowired
-	private DisciplineRepository dr;
-	@Autowired
-	private UserRepository ur;
 	
 	private static final LocalDate DATE = LocalDate.of(2024, 8, 2);
 	private static final LocalTime TIME = LocalTime.of(13, 13);
